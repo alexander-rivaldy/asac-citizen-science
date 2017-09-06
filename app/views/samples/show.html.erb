@@ -1,0 +1,90 @@
+<% provide(:title, @sample.name) %>
+
+<h1><%= @sample.name %> </h1>
+<img src= "<%= @sample.picture %>" />
+<table>
+    <tr>
+        <th>Description</th>
+        <td><%= @sample.description %></td>
+    </tr>
+    <tr>
+        <th>Latitude</th>
+        <td><%= @sample.lat %></td>
+    </tr>
+    <tr>
+        <th>Longitude</th>
+        <td><%= @sample.lon %></td>
+    </tr>
+    <tr>
+        <th>Mass of sample</th>
+        <td><%= @sample.mass %></td>
+    </tr>
+    <tr>
+        <th>Mass of Extraction Fluid Added</th>
+        <td><%= @sample.fluidmass %></td>
+    </tr>   
+    <tr>
+        <th>Mass of Extraction Fluid Recovered</th>
+        <td><%= @sample.fluidmassrecovered %></td>
+    </tr>
+    <tr>
+        <th>pH units</th>
+        <td><%= @sample.ph %></td>
+    </tr>
+    <tr>
+        <th>Conductivity @ 25 C</th>
+        <td><%= @sample.conductivity %> µS/cm</td>
+    </tr>
+    <tr>
+        <th>Bicarbonate Alkalinity as HCO3</th>
+        <td><%= @sample.bicarbonate_alkalinity %> mg/L</td>
+    </tr>
+    <tr>
+        <th>Carbonate Alkalinity as CO3</th>
+        <td><%= @sample.carbonate_alkalinity %> mg/L</td>
+    </tr>
+    <tr>
+        <th>Total Alkalinity as CaCO3</th>
+        <td><%= @sample.total_alkalinity %> mg/L</td>
+    </tr>
+    <tr>
+        <th>Sulphate as SO4</th>
+        <td><%= @sample.sulphate %> mg/L</td>
+    </tr>
+    <tr>
+        <th>Fluoride as ISE</th>
+        <td><%= @sample.fluoride %> mg/L</td>
+    </tr>
+    <tr>
+        <th>Calcium as Ca</th>
+        <td><%= @sample.calcium %> mg/L</td>
+    </tr>
+    <tr>
+        <th>Magnesium as Mg</th>
+        <td><%= @sample.magnesium %> mg/L</td>
+    </tr>
+    <tr>
+        <th>Sodium as Na</th>
+        <td><%= @sample.sodium %> mg/L</td>
+    </tr>
+    <tr>
+        <th>Potassium as K</th>
+        <td><%= @sample.potassium %> mg/L</td>
+    </tr>
+    <tr>
+        <th>Silver as Ag</th>
+        <td><%= @sample.sulphate %> µg/L</td>
+    </tr> 
+    <tr>
+        <th>Aluminium as Al</th>
+        <td><%= @sample.aluminium %> µg/L</td>
+    </tr> 
+    <tr>
+        <th>Arsenic as As</th>
+        <td><%= @sample.arsenic %> µg/L</td>
+    </tr> 
+    <tr>
+        <th>Barium as Ba</th>
+        <td><%= @sample.barium %> µg/L</td>
+    </tr> 
+</table>

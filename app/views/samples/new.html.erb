@@ -1,2 +1,87 @@
-<h1>Samples#new</h1>
-<p>Find me in app/views/samples/new.html.erb</p>
+<% provide(:title, 'New Sample') %>
+<h1>Sign up</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+      <%-# there's a bug that prints the same error twice -%>
+    <%= form_for(@sample) do |f| %>
+
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control' %>
+      
+      <%= f.label :lat %>
+      <%= f.number_field :lat, step: :any, class: 'form-control' %>
+      
+      <%= f.label :lat_type %>
+      <%= f.text_field :lat_type, class: 'form-control' %>
+      
+      <%= f.label :lon %>
+      <%= f.number_field :lon, step: :any, class: 'form-control' %>
+      
+      <%= f.label :lon_type %>
+      <%= f.text_field :lon_type, class: 'form-control' %>
+      
+      <%= f.label :taken %>
+      <%= f.date_field :taken, class: 'form-control' %>
+      
+      <%= f.label :description %>
+      <%= f.text_field :description, class: 'form-control' %>
+      
+      <%= f.label :mass %>
+      <%= f.number_field :mass, step: :any, class: 'form-control' %>
+      
+      <%= f.label :fluidmass %>
+      <%= f.number_field :fluidmass, step: :any, class: 'form-control' %>
+      
+      <%= f.label :fluidmassrecovered %>
+      <%= f.number_field :fluidmassrecovered, step: :any, class: 'form-control' %>
+      
+      <%= f.label :ph %>
+      <%= f.number_field :ph, step: :any, class: 'form-control' %>
+      
+      <%= f.label :conductivity %>
+      <%= f.number_field :conductivity, step: :any, class: 'form-control' %>
+      
+      <%= f.label :bicarbonate_alkalinity %>
+      <%= f.number_field :bicarbonate_alkalinity, step: :any, class: 'form-control' %>
+      
+      <%= f.label :carbonate_alkalinity %>
+      <%= f.number_field :carbonate_alkalinity, step: :any, class: 'form-control' %>
+      
+      <%= f.label :total_alkalinity %>
+      <%= f.number_field :total_alkalinity, step: :any, class: 'form-control' %>
+      
+      <%= f.label :sulphate %>
+      <%= f.number_field :sulphate, step: :any, class: 'form-control' %>
+      
+      <%= f.label :fluoride %>
+      <%= f.number_field :fluoride, step: :any, class: 'form-control' %>
+      
+      <%= f.label :calcium %>
+      <%= f.number_field :calcium, step: :any, class: 'form-control' %>
+      
+      <%= f.label :magnesium %>
+      <%= f.number_field :magnesium, step: :any, class: 'form-control' %>
+      
+      <%= f.label :sodium %>
+      <%= f.number_field :sodium, step: :any, class: 'form-control' %>
+      
+      <%= f.label :potassium %>
+      <%= f.number_field :potassium, step: :any, class: 'form-control' %>
+      
+      <%= f.label :silver %>
+      <%= f.number_field :silver, step: :any, class: 'form-control' %>
+      
+      <%= f.label :aluminium %>
+      <%= f.number_field :aluminium, step: :any, class: 'form-control' %>
+      
+      <%= f.label :arsenic %>
+      <%= f.number_field :arsenic, step: :any, class: 'form-control' %>
+      
+      <%= f.label :barium %>
+      <%= f.number_field :barium, step: :any, class: 'form-control' %>
+      
+      <%= f.submit "Create my account", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
