@@ -1,9 +1,16 @@
 <% provide(:title, "Home") %>
 
 <div class="center jumbotron">
-  <h1>CITIZEN SCIENCE PROJECT</h1>
-
-  <h2> This is the home page for the Citizen Science project</h2>
-
-  <%= link_to "CLICK HERE TO JOIN US", '#', class: "btn btn-lg btn-primary" %>
+  <div class="container">
+    <%= image_tag("logo-2-white.png", :alt => "Citizen Science Logo", :class => "main-logo") %>
+  
+    <div class="wrapper">
+      <h3>Welcome to the Citizen Science project!</h3>
+      <h4>Sed ultricies nulla in consectetur tincidunt. Donec metus urna, auctor sed quam ut, ornare tincidunt dui. 
+      Maecenas eget dignissim orci, at posuere ligula. Maecenas at tellus arcu. Nam tincidunt dignis
+      sim mauris. Praesent elementum lacinia tempus. Nunc ante neque, ultrices non mattis sed, sollicitudin et urna.</h4>
+    </div>
+  
+    <%= link_to "CLICK HERE TO JOIN US", '#', class: "btn btn-primary" %>
+  </div>
 </div>
