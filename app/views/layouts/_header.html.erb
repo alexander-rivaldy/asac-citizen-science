@@ -1,12 +1,9 @@
-<header class="navbar navbar-fixed-top navbar-inverse">
-  <div class="container">
-      
-    <%= link_to "sample app", '#', id: "logo" %>
+<header>
+    <%= link_to image_tag("logo-2-white.png", :alt => "Citizen Science Logo", :class => "small-logo"), '#', id: "logo" %>
     <nav>
-      <ul class="nav navbar-nav navbar-right">
+      <ul>
         <li><%= link_to "Help",   '#' %></li>
         <li><%= link_to "Admin", '#' %></li>
       </ul>
     </nav>
-  </div>
 </header>
