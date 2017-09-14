@@ -18,103 +18,45 @@
     </div>
 </div>
 
-
 <div id="list-view">
-    <% @locations.each do |sample| %>
-    <div class="row" id="row-<%= sample.id %>">
-        <h1 class="row-h1"> <%= sample.name %></h1>
+    <% @locations['data'].each do |sample| %>
+    <div class="row" id="row-<%= sample['id'] %>">
         
-        <div class="box-list" id="box-<%= sample.id %>">
+        <div class="box-list" id="box-<%= sample['id'] %>">
             <div class="crop">
-                <img src= "<%= sample.picture %>"/>
+                <img src= "<%= sample['photo'] %>"/>
             </div>
             <table>
                 <tr>
-                    <th>Description</th>
-                    <td><%= sample.description %></td>
-                </tr>
-                <tr>
-                    <th>Latitude</th>
-                    <td><%= sample.lat %></td>
-                </tr>
-                <tr>
-                    <th>Longitude</th>
-                    <td><%= sample.lon %></td>
-                </tr>
-                <tr>
-                    <th>Mass of sample</th>
-                    <td><%= sample.mass %></td>
-                </tr>
-                <tr>
-                    <th>Mass of Extraction Fluid Added</th>
-                    <td><%= sample.fluidmass %></td>
-                </tr>   
-                <tr>
-                    <th>Mass of Extraction Fluid Recovered</th>
-                    <td><%= sample.fluidmassrecovered %></td>
-                </tr>
-                <tr>
-                    <th>pH units</th>
-                    <td><%= sample.ph %></td>
-                </tr>
-                <tr>
-                    <th>Conductivity @ 25 C</th>
-                    <td><%= sample.conductivity %> µS/cm</td>
+                    <td>Weather</td>
+                    <td><%= sample['weather'] %></td>
                 </tr>
             </table>
-            <%= link_to "Read more > ", samples_path(sample.id) %>
+            <%= link_to "Read more > ", samples_path(sample['id']) %>
         </div>
     </div>
     <% end %>
 </div>
 
 <div id="grid-view">
-    <% @locations.each do |sample| %>
+    <% @locations['data'].each do |sample| %>
         <div class="grid">
-            <h1> <%= sample.name %></h1>
             <div class="crop">
-                <img src= "<%= sample.picture %>"/>
+                <img src= "<%= sample['photo'] %>"/>
             </div>
             <table>
                 <tr>
-                    <th>Description</th>
-                    <td><%= sample.description %></td>
-                </tr>
-                <tr>
-                    <th>Latitude</th>
-                    <td><%= sample.lat %></td>
-                </tr>
-                <tr>
-                    <th>Longitude</th>
-                    <td><%= sample.lon %></td>
-                </tr>
-                <tr>
-                    <th>Mass of sample</th>
-                    <td><%= sample.mass %></td>
-                </tr>
-                <tr>
-                    <th>Mass of Extraction Fluid Added</th>
-                    <td><%= sample.fluidmass %></td>
-                </tr>   
-                <tr>
-                    <th>Mass of Extraction Fluid Recovered</th>
-                    <td><%= sample.fluidmassrecovered %></td>
-                </tr>
-                <tr>
-                    <th>pH units</th>
-                    <td><%= sample.ph %></td>
-                </tr>
-                <tr>
-                    <th>Conductivity @ 25 C</th>
-                    <td><%= sample.conductivity %> µS/cm</td>
+                    <td>Weather</td>
+                    <td><%= sample['weather'] %></td>
                 </tr>
             </table>
-            <%= link_to "Read more > ", samples_path(sample.id) %>
+            <%= link_to "Read more > ", samples_path(sample['id']) %>
         </div>
     <% end %>
 </div>
 
 <div id="map"></div>
+
 
 <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnBXNqDm5F3qY8NROuI4_-lPRmZ-KjCIk&callback=initMap" async defer></script>-->
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true&libraries=places"></script>
