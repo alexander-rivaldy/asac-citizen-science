@@ -1,37 +1,4 @@
-<% provide(:title, "Home") %>
-
-<div class="container">
-  <div class="row-fluid col-wrap">
-    <div class="col-sm-6">
-      <h1>CITIZEN SCIENCE</h1>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nisi justo, posuere a tempus ut, suscipit vitae neque. Vestibulum sed orci ac risus porta egestas. Suspendisse gravida mauris nulla, eget maximus nibh elementum vitae. Vestibulum quis sagittis velit. Praesent vulputate laoreet quam nec interdum. Donec a facilisis lectus. Praesent at lorem condimentum turpis egestas ultrices. Suspendisse blandit vitae tellus non dictum. Cras quis purus quis velit bibendum hendrerit eget ac libero. Integer ultrices metus purus, nec elementum dolor vulputate a. Nulla vitae cursus erat. Donec rhoncus hendrerit risus, in elementum dolor accumsan in. Fusce suscipit, dui eu varius laoreet, tortor velit semper metus, nec mattis ipsum sapien nec nisi. Duis quis viverra ipsum.
-
-Sed id nisi sit amet mauris bibendum convallis eu vel dui. Aliquam gravida, enim in molestie ultricies, urna nunc pharetra nisl, sed scelerisque lectus nisi eu arcu. Curabitur euismod ante neque, sit amet hendrerit lorem interdum at. Phasellus bibendum sed eros id pulvinar. Aliquam pulvinar est non lorem ultrices rutrum. Ut in mollis nisl. Phasellus et leo vel nisi egestas dignissim sed sit amet orci. Sed scelerisque lectus sit amet lacus elementum ornare. Integer lobortis sit amet enim in iaculis. Cras faucibus metus vitae elit sagittis, sit amet dignissim nisi faucibus. Mauris pretium sit amet dolor gravida tincidunt. Aliquam sed tristique metus. Mauris aliquam malesuada condimentum. Nam ac pretium enim.
-
-     </p>
-    </div>
-    <div class="col-sm-6">
-      <div class="row">
-          <%= link_to "REGISTER", '/signup', class: "btn btn-lg btn-primary" %>
-      </div>
-      <div class="row">
-          <%= link_to "LOGIN", '#', class: "btn btn-lg btn-primary" %>
-      </div>
-      <div class="row">
-        <div class="col-sm-6">
-          <%= image_tag("google-play-badge.png", class:"google-badge") %>
-        </div>
-        <div class="col-sm-6">
-          <%= open_svg("app-store-badge.svg") %>
-        </div>
-      </div>
-      
-    </div>
-  </div>
-  
-</div>
-
-
+<% provide(:title, "") %>
 <div class="center jumbotron">
   <div class="container">
     <%= image_tag("logo-2-white.png", :alt => "Citizen Science Logo", :class => "main-logo") %>
@@ -40,10 +7,14 @@ Sed id nisi sit amet mauris bibendum convallis eu vel dui. Aliquam gravida, enim
       <h3>Welcome to the Citizen Science project!</h3>
       <h4>Sed ultricies nulla in consectetur tincidunt. Donec metus urna, auctor sed quam ut, ornare tincidunt dui. 
       Maecenas eget dignissim orci, at posuere ligula. Maecenas at tellus arcu. Nam tincidunt dignis
-      sim mauris. Praesent elementum lacinia tempus. Nunc ante neque, ultrices non mattis sed, sollicitudin et urna.</h4>
+      sim mauris. Praesent elementum lacinia tempus. Nunc ante neque, ultrices non mattis sed.</h4>
     </div>
-  
-    <%= link_to "CLICK HERE TO JOIN US", '#', class: "btn btn-primary" %>
+    
+    <div class="wrapper">
+      <%= image_tag("google-play-badge.png", class:"app-badge") %>
+      <%= open_svg("app-store-badge.svg") %>
+    </div>
+
   </div>
 </div>
 

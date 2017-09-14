@@ -34,16 +34,95 @@ jQuery ($) ->
         # Setup map options
         mapOptions =
             center: new google.maps.LatLng(-37.8136, 144.9631)
-            zoom: 11
-            streetViewControl: false
+            zoom: 12
+            streetViewControl: true
+            fullscreenControl: true
             panControl: false
+            zoomControl: true
             mapTypeId: google.maps.MapTypeId.ROADMAP
             zoomControlOptions: 
                 style: google.maps.ZoomControlStyle.SMALL
+                position: google.maps.ControlPosition.RIGHT_BOTTOM
             mapTypeControlOptions:
                 mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'map_style']
+            styles: [
+                { 
+                    "featureType":"administrative",
+                    "elementType":"labels.text.fill",
+                    "stylers":[{"color":"#444444"}]
+                },
+                {
+                    "featureType":"administrative.province",
+                    "elementType":"geometry.stroke",
+                    "stylers":[{"saturation":"46"}]
+                },
+                {
+                    "featureType":"administrative.neighborhood",
+                    "elementType":"geometry.fill",
+                    "stylers":[{"hue":"#00ff43"}]
+                },
+                {
+                    "featureType":"landscape",
+                    "elementType":"all",
+                    "stylers":[{"color":"#f2f2f2"}]
+                },
+                {
+                    "featureType":"landscape.man_made",
+                    "elementType":"geometry.fill",
+                    "stylers":[{"visibility":"on"}]
+                },
+                {
+                    "featureType":"poi",
+                    "elementType":"all",
+                    "stylers":[{"visibility":"off"}]
+                },
+                {
+                    "featureType":"road",
+                    "elementType":"all",
+                    "stylers":[{"saturation":-100},{"lightness":45}]
+                },
+                {
+                    "featureType":"road.highway",
+                    "elementType":"all",
+                    "stylers":[{"visibility":"simplified"}]
+                },
+                {
+                    "featureType":"road.highway",
+                    "elementType":"geometry.stroke",
+                    "stylers":[{"visibility":"on"},{"hue":"#ff0046"}]
+                },
+                {
+                    "featureType":"road.arterial",
+                    "elementType":"labels.icon",
+                    "stylers":[{"visibility":"off"}]
+                },
+                {
+                    "featureType":"transit",
+                    "elementType":"all",
+                    "stylers":[{"visibility":"off"}]
+                },
+                {
+                    "featureType":"transit.line",
+                    "elementType":"geometry.fill",
+                    "stylers":[{"hue":"#ff0041"}]
+                },
+                {
+                    "featureType":"transit.station.airport",
+                    "elementType":"geometry.fill",
+                    "stylers":[{"visibility":"on"},{"color":"#f2f2f2"}]
+                },
+                {
+                    "featureType":"transit.station.airport",
+                    "elementType":"labels.text.fill",
+                    "stylers":[{"color":"#f2f2f2"}]
+                },
+                {
+                    "featureType":"water",
+                    "elementType":"all",
+                    "stylers":[{"color":"#00617f"},{"visibility":"on"}]
+                }]
        # Create the map with above options in div
-        map = new google.maps.Map(document.getElementById("map"),mapOptions)
+        map = new google.maps.Map(document.getElementById("map"), mapOptions);
         
         `gon.locations.forEach(function(sample) {
                 var marker = new google.maps.Marker({

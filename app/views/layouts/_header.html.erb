@@ -1,7 +1,10 @@
 <header>
     <%= link_to image_tag("logo-2-white.png", :alt => "Citizen Science Logo", :class => "small-logo"), '#', id: "logo" %>
+    <h2 class="page-title"><%= yield(:title) %></h2>
     <nav>
       <ul>
+        <li><%= link_to "Register", '/signup', class: 'reg-login' %></li>
+        <li><%= link_to "Login", '/signup', class: 'reg-login' %></li>
         <li><%= link_to "Help",   '#' %></li>
         <li><%= link_to "Admin", '#' %></li>
       </ul>

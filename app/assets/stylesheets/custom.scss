@@ -26,60 +26,76 @@ textarea {
 
 .center {
   text-align: center;
+  overflow: hidden;
 }
 
 .jumbotron {
   position: relative;
   width: inherit;
+  height: 100%;
   clear: both;
   
   display: flex;
   justify-content: center;
   flex-direction: column;
-  
-  flex: 1;
+
 }
 
 .container {
-  padding: 0em 20em;
+  padding: 0em 20vw;
 }
 
 .wrapper {
-  margin: 3em;
+  margin: 2em 0 0;
+  min-height: 2vh;
 }
 
-.btn {
+.button_to {
+  display: inline-block;
+}
+
+button {
   background: #fff;
+  margin: 0 1em;
+  min-width: 125px;
   border-radius: 5px;
-  padding: 1em;
+  padding: 0.5em;
   color: #094d4d;
   font-weight: bold;
+  font-size: 14px;
   text-decoration: none;
+  border-color: transparent;
+  border-style: none;
   
   &:hover {
     color: #fff;
     background: #00838f;
     text-decoration: none;
+    border-color: transparent;
   }
    
 }
 
 .main-logo {
-  max-width: 50%;
+  min-width: 200px;
+  max-width: 450px;
 }
 
 .small-logo {
-  max-width: 3%;
-  margin: 0;
-  padding: 0;
+  max-width: 65px;
   vertical-align: middle;
+}
+
+.app-badge {
+  max-width: 135px;
+  margin: 0 1em;
 }
 
 header, footer {
   background: #005662;
   color: #fff;
   border-bottom: none;
-  
+  display: inline-block;
   
   a {
     color: #fff;
@@ -97,14 +113,15 @@ header, footer {
     padding: 0;
     display: inline-block;
     float: right;
+    margin: 0.5em 0;
     
     ul {
       margin: 0 1em;
       list-style-type: none;
-      padding:0;
+      padding: 0;
       
       li {
-        margin: 0 1em;
+        margin: 0 0.5em;
         display: inline-block;
       }
       
@@ -132,9 +149,15 @@ footer {
 
 h1 { 
   font-family: 'Avenir-Black', sans-serif;
-  font-size: 2em; 
+  font-size: 1.75em; 
 }
 
+.page-title {
+  margin: 0 1em 0;
+  text-align: center;
+  display: inline-block;
+}
+  
 h2 { 
   font-family: 'Avenir-Black', sans-serif;
   font-size: 1.5em; 
