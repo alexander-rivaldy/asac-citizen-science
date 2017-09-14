@@ -10,7 +10,19 @@ jQuery ($) ->
     windows = []
     init = () ->
         
-        # Setup map options
+        
+        `
+        var data = gon.locations['data']
+        console.log(data);
+        for(var sample in data){
+            $('#row-'+data[sample].id).click(function(){
+                if ($('#box-'+data[sample].id).css('display') === 'none')
+                    $('#box-'+data[sample].id).css('display', 'block')
+                else 
+                    $('#box-'+data[sample].id).css('display', 'none')
+            });
+        }`
+            # Setup map options
         mapOptions =
             center: new google.maps.LatLng(-37.8136, 144.9631)
             zoom: 11
@@ -22,20 +34,8 @@ jQuery ($) ->
             mapTypeControlOptions:
                 mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'map_style']
        # Create the map with above options in div
-        map = new google.maps.Map(document.getElementById("map"),mapOptions)
-        `
-        var data = gon.locations['data']
-        console.log(data);
-        for(var sample in data){
-            $('#row-'+data[sample].id).click(function(){
-                if ($('#box-'+data[sample].id).css('display') === 'none')
-                    $('#box-'+data[sample].id).css('display', 'block')
-                else 
-                    $('#box-'+data[sample].id).css('display', 'none')
-            });
-        }
-                        
-        for(var sample in data){
+        map = new google.maps.Map(document.getElementById("map"),mapOptions)            
+        `for(var sample in data){
                 var marker = new google.maps.Marker({
                                 position: {lat: parseFloat(data[sample].lat), lng: parseFloat(data[sample].lng)},
                                 map: map,
