@@ -1,6 +1,7 @@
 module ApplicationHelper
     
-    heroku_key = "c3d23a5a-d8e2-43ab-807d-4d27e53f9275"
+    $token = ""
+    $refresh_token = ""
     
     def full_title(title)
         base = "The Citizen Science Project"

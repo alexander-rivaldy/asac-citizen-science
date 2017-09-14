@@ -20,16 +20,6 @@ class SamplesController < ApplicationController
     end
     
     def map 
-        # @login = RestClient::Request.execute(method: :post, 
-        #     url: 'https://citsciapp.herokuapp.com/login',
-        #     timeout: 10, body: {params: {email: 'bugs@rubyplus.com',
-        #                                     password: '123456'
-        #     }})
-        # @login = RestClient::Request.execute(method: :post, 
-        #     url: 'https://citsciapp.herokuapp.com/samples',
-        #     timeout: 10, headers: {params: {'token': @login['token'],
-        #                                     'refresh_token': @login['refresh_token']
-        # }})
         @params = {"email" => "bugs@rubyplus.com", "password" => "123456"}
         
         @login = RestClient.post "https://citsciapp.herokuapp.com/login",
@@ -40,7 +30,7 @@ class SamplesController < ApplicationController
         @locations = RestClient.post 'https://citsciapp.herokuapp.com/samples', 
             @params.to_json, {content_type: :json, accept: :json}
         @locations = JSON.parse(@locations)
-        # @locations = Sample.all 
+        
         gon.locations = @locations
     end
   
