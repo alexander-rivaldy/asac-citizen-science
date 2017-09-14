@@ -1,62 +1,50 @@
+<% provide(:title, "My Samples") %>
 
-<h1>YOUR SAMPLES</h1>
-<div class="row justify-content-md-center">
-    <div class="col col-lg-2"></div>
+<div class="center">
     
-    <div class="col col-lg-2">
-        <br>
+    <div class="wrapper">
       <button id="change-map">MAP VIEW</button>
-    </div>
-    
-    <div class="col col-lg-2">
-      <br>
       <button id="change-list">LIST VIEW</button>
-    </div>
-    <div class="col col-lg-2">
-      <br>
       <button id="change-grid">GRID VIEW</button>
     </div>
-</div>
 
-<div id="list-view">
-    <% @locations['data'].each do |sample| %>
-    <div class="row" id="row-<%= sample['id'] %>">
-        
-        <div class="box-list" id="box-<%= sample['id'] %>">
-            <div class="crop">
-                <img src= "<%= sample['photo'] %>"/>
+
+    <div class="wrapper">
+        <div id="list-view">
+            <% @locations['data'].each do |sample| %>
+            <div class="row" id="row-<%= sample['id'] %>">
+                <h1 class="row-h1"> <%= sample['id'] %></h1>
+                
+                <div class="box-list" id="box-<%= sample['id'] %>">
+                    <div class="crop">
+                        <img src= "<%= sample['photo'] %>"/>
+                    </div>
+                    <table>
+                        
+                    </table>
+                    <%= link_to "Read more > ", samples_path(sample['id']) %>
+                </div>
             </div>
-            <table>
-                <tr>
-                    <td>Weather</td>
-                    <td><%= sample['weather'] %></td>
-                </tr>
-            </table>
-            <%= link_to "Read more > ", samples_path(sample['id']) %>
+            <% end %>
+        </div>
+        
+        <div id="grid-view">
+            <% @locations['data'].each do |sample| %>
+                <div class="grid">
+                    <h1> <%= sample['id'] %></h1>
+                    <div class="crop">
+                        <img src= "<%= sample['photo'] %>"/>
+                    </div>
+                    <table>
+                        
+                    </table>
+                    <%= link_to "Read more > ", samples_path(sample['id']) %>
+                </div>
+            <% end %>
+        </div>
+        
+        <div id="map">
+            <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true&libraries=places"></script>
         </div>
     </div>
-    <% end %>
 </div>
-
-<div id="grid-view">
-    <% @locations['data'].each do |sample| %>
-        <div class="grid">
-            <div class="crop">
-                <img src= "<%= sample['photo'] %>"/>
-            </div>
-            <table>
-                <tr>
-                    <td>Weather</td>
-                    <td><%= sample['weather'] %></td>
-                </tr>
-            </table>
-            <%= link_to "Read more > ", samples_path(sample['id']) %>
-        </div>
-    <% end %>
-</div>
-
-<div id="map"></div>
-
-
-<!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnBXNqDm5F3qY8NROuI4_-lPRmZ-KjCIk&callback=initMap" async defer></script>-->
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true&libraries=places"></script>
