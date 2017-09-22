@@ -20,6 +20,11 @@ class SamplesController < ApplicationController
     end
     
     def map 
+        if(session[:token].nil?)
+           
+            redirect_to login_path
+             flash[:danger] = "YOU ARE NOT LOGGED IN"
+        end
         @params = {"email" => "bugs@rubyplus.com", "password" => "123456"}
         
         @login = RestClient.post "https://citsciapp.herokuapp.com/login",
