@@ -5,22 +5,47 @@ class UsersController < ApplicationController
   end
   
   def new
-    @user = User.new
+    @register = ""
   end
   
   def create
-    @user = User.new(user_params) # Not the final implementation!
-    if @user.save
-      log_in @user
-      flash[:success] = "Account activated!"
-      redirect_to root_url
-      #@user.send_activation_email
-      #flash[:info] = "Please check your email to activate your account."
-      #redirect_to root_url
+    @password = params[:password]
+    @passwordconf = params[:confirm_password]
+    
+    puts
+    puts
+    puts
+    puts @password
+    puts @passwordconf
+    puts @password.eql? @passwordconf
+    puts
+    puts
+    
+    if(@password.eql? @passwordconf)
+      @params ={ "email" => params[:email].downcase, "password" => @password,
+                "name" => params[:name], "line1" => params[:address_line1],
+                "line2" => params[:address_line2] ,
+                "postcode" => params[:postcode], "state" => params[:state]}
+      @register = RestClient.post "https://citsciapp.herokuapp.com/register",
+              @params.to_json, {content_type: :json, accept: :json}
+      @json = JSON.parse(@register)
+      
+      if(@json["status"].eql? "SUCCESS")
+        flash[:success] = "Registered successfully!"
+        redirect_to login_path
+      else
+        flash[:danger] = "Registered failed, please try again"
+        render 'new'
+      end
+      
+      
     else
-      render 'new'
+      flash[:danger] = "Password and password confirmation does not match!"
+      
     end
+    
   end
+  
   
   
   private

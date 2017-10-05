@@ -1,0 +1,36 @@
+<% provide(:title, "Register") %>
+<h1>Log in</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(url: signup_path) do |f| %>
+
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+      
+      <%= f.label :address_line1 %>
+      <%= f.text_field :address_line1 %>
+      
+      <%= f.label :address_line2 %>
+      <%= f.text_field :address_line2 %>
+      
+      <%= f.label :postcode %>
+      <%= f.number_field :postcode %>
+      
+      <%= f.label :state %>
+      <%= f.text_field :state %>
+      
+      <%= f.label :email %>
+      <%= f.email_field :email %>
+      
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+      <%= f.label :confirm_password %>
+      <%= f.password_field :password %>
+      
+      <%= f.submit "Register", class: "btn btn-primary" %>
+    <% end %>
+
+    <p>Already have an account? <%= link_to "Login here!", login_path %></p>
+  </div>
+</div>

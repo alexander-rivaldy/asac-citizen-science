@@ -10,46 +10,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170903064108) do
-
-  create_table "samples", force: :cascade do |t|
-    t.string "name"
-    t.float "lat"
-    t.string "lat_type"
-    t.float "lon"
-    t.string "lon_type"
-    t.date "taken"
-    t.string "description"
-    t.float "mass"
-    t.float "fluidmass"
-    t.float "fluidmassrecovered"
-    t.float "ph"
-    t.float "conductivity"
-    t.float "bicarbonate_alkalinity"
-    t.float "carbonate_alkalinity"
-    t.float "total_alkalinity"
-    t.float "sulphate"
-    t.float "fluoride"
-    t.float "calcium"
-    t.float "magnesium"
-    t.float "sodium"
-    t.float "potassium"
-    t.float "silver"
-    t.float "aluminium"
-    t.float "arsenic"
-    t.float "barium"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "picture"
-  end
-
-  create_table "users", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "password_digest"
-    t.index ["email"], name: "index_users_on_email", unique: true
-  end
+ActiveRecord::Schema.define(version: 0) do
 
 end

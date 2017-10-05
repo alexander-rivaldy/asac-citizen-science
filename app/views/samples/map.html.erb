@@ -19,9 +19,9 @@
                     <div class="crop">
                         <img src= "<%= sample['photo'] %>"/>
                     </div>
-                    <table>
-                        
-                    </table>
+                    
+                    
+                    
                     <%= link_to "Read more > ", samples_path(sample['id']) %>
                 </div>
             </div>
@@ -35,6 +35,11 @@
                     <div class="crop">
                         <img src= "<%= sample['photo'] %>"/>
                     </div>
+                    <h3>Date / Time taken: <%= sample['datetime'] %></h3>
+                    <h3>Weather: <%= sample['weather'] %></h3>
+                    <h3>Latitude: <%= sample['lat'] %></h3>
+                    <h3>Longitude: <%= sample['lng'] %></h3>
+                    
                     <table>
                         
                     </table>

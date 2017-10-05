@@ -14,7 +14,10 @@ class SamplesController < ApplicationController
     end
     
     def show
-       @sample = Sample.find(params[:id]) 
+        @params = {"token" => session[:token], "refresh_token" => session[:refresh_token]}
+        @sample = RestClient.post ("https://citsciapp.herokuapp.com/sample/" + params['id'].to_s),
+            @params.to_json, {content_type: :json, accept: :json}
+       
        
        
     end
