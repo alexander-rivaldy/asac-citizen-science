@@ -122,7 +122,7 @@ jQuery ($) ->
                     "stylers":[{"color":"#00617f"},{"visibility":"on"}]
                 }]
        # Create the map with above options in div
-        map = new google.maps.Map(document.getElementById("map"),mapOptions) 
+        map = new google.maps.Map(document.getElementById("map"), mapOptions) 
         `function(){for(var sample in data){
             (function (sample){
                 var marker = new google.maps.Marker({
@@ -153,6 +153,22 @@ jQuery ($) ->
                 marker.addListener('click', function() {
                     window.location.href = marker['url'];
                 });
+                
+                google.maps.event.addListener(infowindow, 'domready', function() {
+                    var iwOuter = $('.gm-style-iw');
+            
+                    var iwBackground = iwOuter.prev();
+                
+                    iwBackground.children(':nth-child(2)').css({'display' : 'none'});
+                
+                    iwBackground.children(':nth-child(4)').css({'display' : 'none'});
+                    
+                    iwBackground.children(':nth-child(1)').attr('style', function(i,s)
+                    { return s + 'display: none !important;'});
+                    
+                });
+                
+
             }).call(this, sample);
             
         }}()`

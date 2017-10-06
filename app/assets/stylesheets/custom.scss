@@ -229,22 +229,24 @@ form {
 .info-photo {
   margin: 0;
   padding: 0;
-  width: 225px;
+  width: 200px;
   height: 125px;
+  border-radius: 8px;
 }
 
 .gm-style {
   padding: 0;
+  width: 200px;
 }
 .gm-style .gm-style-iw {
   background-color: #fff !important;
   border: none;
   top: 0 !important;
   left: 0 !important;
-  width: 100% !important;
+  right: 0 !important;
   height: 100% !important;
   min-height: 105px !important;
-  padding-top: 10px;
+  padding-top: 5px;
   display: block !important;
 }  
     
