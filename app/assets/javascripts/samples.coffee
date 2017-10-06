@@ -129,14 +129,18 @@ jQuery ($) ->
                             position: {lat: parseFloat(data[sample].lat), lng: parseFloat(data[sample].lng)},
                             map: map,
                             animation: google.maps.Animation.DROP,
-                            icon: 'http://maps.google.com/mapfiles/arrow.png',
+                            icon: 'http://maps.google.com/mapfiles/marker.png',
                             url: '/samples/' + data[sample].id
                           });
+                var content = '<div class="info-window">' + 
+                                '<p>' + data[sample].id + '</p>' +
+                                '<img src="' + data[sample].photo + '" class="info-photo"/>' +
+                                '</div>';
                 var infowindow = new google.maps.InfoWindow({
-                                content: '<p>'+data[sample].id+'</p><br/><img src="' +
-                                    data[sample].photo + '" style="max-width:200px;"/>',
+                                content: content,
                                 map:map,
-                                position: {lat: parseFloat(data[sample].lat), lng: parseFloat(data[sample].lng)}
+                                position: {lat: parseFloat(data[sample].lat), lng: parseFloat(data[sample].lng)},
+                                padding: 0,
                               });
                 infowindow.close();
                 marker.addListener('mouseover', function() {

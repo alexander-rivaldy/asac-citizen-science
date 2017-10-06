@@ -3,12 +3,11 @@
 <div class="center">
     
     <div class="wrapper">
-      <button id="change-map">MAP VIEW</button>
-      <button id="change-list">LIST VIEW</button>
-      <button id="change-grid">GRID VIEW</button>
+      <button class="btn-map <%= 'active' if params[:controller] == 'map' %>" id="change-map">Map View</button>
+      <button class="btn-map" id="change-list">List View</button>
+      <button class="btn-map" id="change-grid">Grid View</button>
     </div>
-
-
+    
     <div class="wrapper">
         <div id="list-view">
             <% @locations['data'].each do |sample| %>
