@@ -1,0 +1,36 @@
+<div class="center">
+    
+    <h3>You have <%= @locations['data'].count %> samples.</h3>
+    
+    <div class="wrapper">
+        <%= link_to '<button type="button">MAP VIEW</button>'.html_safe, 
+            map_path %>
+        <%= link_to '<button type="button">LIST VIEW</button>'.html_safe, 
+            list_path %>
+        <%= link_to '<button type="button">GRID VIEW</button>'.html_safe, 
+            grid_path %>
+    </div>
+    
+    <div class="wrapper">
+        <div id="grid-view">
+            <% @locations['data'].each do |sample| %>
+                <div class="grid">
+                    <h1> <%= sample['id'] %></h1>
+                    <div class="crop">
+                        <img src= "<%= sample['photo'] %>"/>
+                    </div>
+                    <h3>Date / Time taken: <%= sample['datetime'] %></h3>
+                    <h3>Weather: <%= sample['weather'] %></h3>
+                    <h3>Latitude: <%= sample['lat'] %></h3>
+                    <h3>Longitude: <%= sample['lng'] %></h3>
+                    
+                    <table>
+                        
+                    </table>
+                    <%= link_to "Read more > ", samples_path(sample['id']) %>
+                </div>
+            <% end %>
+        </div>
+    </div>
+    
+</div>

@@ -22,4 +22,8 @@ module SessionsHelper
     def logged_in?
         !session[:token].nil?
     end
+    
+    def is_admin?
+        !session[:admin].nil?
+    end
 end

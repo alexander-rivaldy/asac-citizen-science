@@ -1,7 +1,18 @@
 class UsersController < ApplicationController
   
   def show
-    @user = User.find(params[:id])
+    @params = {"token" => session[:token], "refresh_token" => session[:refresh_token]}
+    @user = RestClient.post ("https://citsciapp.herokuapp.com/profile"),
+        @params.to_json, {content_type: :json, accept: :json}
+    @user = JSON.parse(@user)
+    
+    @params = {"token" => session[:token], "refresh_token" => session[:refresh_token]}
+    @sample = RestClient.post 'https://citsciapp.herokuapp.com/samples', 
+        @params.to_json, {content_type: :json, accept: :json}
+    @sample = JSON.parse(@sample)
+    
+    @numsamples = @sample['data'].count
+    
   end
   
   def new
@@ -11,15 +22,6 @@ class UsersController < ApplicationController
   def create
     @password = params[:password]
     @passwordconf = params[:confirm_password]
-    
-    puts
-    puts
-    puts
-    puts @password
-    puts @passwordconf
-    puts @password.eql? @passwordconf
-    puts
-    puts
     
     if(@password.eql? @passwordconf)
       @params ={ "email" => params[:email].downcase, "password" => @password,

@@ -1,0 +1,42 @@
+<% provide(:title, @sample['data']['name']) %>
+
+<h1><%= @sample['data']['name'] %> </h1>
+<img src= "<%= @data['photos'][0] %>" />
+
+<form>
+    <p>Sample Name</p>
+    <input type="text" name="sample_name" >
+    
+    <p>Cycle Number</p>
+    <input type="text" name="cycleNumber" >
+    
+    <p>pH</p>
+    <input type="text" name="ph" >
+    
+    <p>Sample Mass</p>
+    <input type="text" name="sampleMass" >
+    
+    <p>Conductivity at 25C</p>
+    <input type="text" name="conductivityAt25C" >
+    
+    <p>Bicarbonate Alkalinity HCO3</p>
+    <input type="text" name="bicarbonateAlkalinityHCO3" >
+    
+    <p>Carbonate Alkalinity</p>
+    <input type="text" name="carbonateAlkalinityCO3" >
+    
+    <p>Total Alkalinity CO3</p>
+    <input type="text" name="totalAlkalinityCaCO3" >
+    
+    <h2>Chemicals</h2>
+     <% @chemicals.each do |chem| %>
+    
+    <p><%= chem.keys[0] %></p>
+    <p>Value: <input type="text" name="value"></p>
+    <p>Units: <input type="text" name="units" ></p>
+    
+    <% end %>
+    
+</form>
+
+

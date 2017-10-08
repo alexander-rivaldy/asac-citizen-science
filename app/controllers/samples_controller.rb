@@ -14,12 +14,18 @@ class SamplesController < ApplicationController
     end
     
     def show
+        if(session[:token].nil?)
+           
+            redirect_to login_path
+             flash[:danger] = "YOU ARE NOT LOGGED IN"
+        end
+       
         @params = {"token" => session[:token], "refresh_token" => session[:refresh_token]}
         @sample = RestClient.post ("https://citsciapp.herokuapp.com/sample/" + params['id'].to_s),
             @params.to_json, {content_type: :json, accept: :json}
-       
-       
-       
+        @sample = JSON.parse(@sample)
+        @data = @sample['data']
+        @chemicals = @sample['data']['chemicals']
     end
     
     def map 
@@ -28,18 +34,77 @@ class SamplesController < ApplicationController
             redirect_to login_path
              flash[:danger] = "YOU ARE NOT LOGGED IN"
         end
-        @params = {"email" => "bugs@rubyplus.com", "password" => "123456"}
+       
         
-        @login = RestClient.post "https://citsciapp.herokuapp.com/login",
-           @params.to_json, {content_type: :json, accept: :json}
-        @json = JSON.parse(@login)
-        
-        @params = {"token" => @json["token"], "refresh_token" => @json["refresh_token"]}
+        @params = {"token" => session[:token], "refresh_token" => session[:refresh_token]}
         @locations = RestClient.post 'https://citsciapp.herokuapp.com/samples', 
             @params.to_json, {content_type: :json, accept: :json}
         @locations = JSON.parse(@locations)
         
         gon.locations = @locations
+    end
+    
+    def list
+        if(session[:token].nil?)
+           
+            redirect_to login_path
+             flash[:danger] = "YOU ARE NOT LOGGED IN"
+        end
+       
+        
+        @params = {"token" => session[:token], "refresh_token" => session[:refresh_token]}
+        @locations = RestClient.post 'https://citsciapp.herokuapp.com/samples', 
+            @params.to_json, {content_type: :json, accept: :json}
+        @locations = JSON.parse(@locations)
+        
+        gon.locations = @locations
+    end
+    
+    def grid
+        if(session[:token].nil?)
+           
+            redirect_to login_path
+             flash[:danger] = "YOU ARE NOT LOGGED IN"
+        end
+       
+        
+        @params = {"token" => session[:token], "refresh_token" => session[:refresh_token]}
+        @locations = RestClient.post 'https://citsciapp.herokuapp.com/samples', 
+            @params.to_json, {content_type: :json, accept: :json}
+        @locations = JSON.parse(@locations)
+        
+        gon.locations = @locations
+    end
+    
+    def edit
+        if(session[:token].nil?)
+           
+            redirect_to login_path
+             flash[:danger] = "YOU ARE NOT LOGGED IN"
+        end
+        if(session[:admin].nil?)
+           
+           flash[:danger] = "YOU ARE NOT AN ADMIN"
+           redirect_to profile_path
+             
+        end
+       
+       
+        @params = {"token" => session[:token], "refresh_token" => session[:refresh_token]}
+        @sample = RestClient.post ("https://citsciapp.herokuapp.com/sample/" + params['id'].to_s),
+            @params.to_json, {content_type: :json, accept: :json}
+        @sample = JSON.parse(@sample)
+        
+        @data = @sample['data']
+        @chemicals = @sample['data']['chemicals']
+        
+    end
+    
+    def update
+        @params = {"token" => session[:token], "refresh_token" => session[:refresh_token]}
+        @sample = RestClient.post ("https://citsciapp.herokuapp.com/sample/" + params['id'].to_s),
+            @params.to_json, {content_type: :json, accept: :json}
+        @sample = JSON.parse(@sample)
     end
   
   private

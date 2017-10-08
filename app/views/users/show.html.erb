@@ -1,0 +1,18 @@
+<% provide(:title, "My Profile") %>
+
+<%= image_tag("profile.png", :alt => "Profile picture") %>
+  
+<h1><%= @user['name'] %>'s Profile</h1>
+
+<% if is_admin? %>
+    <h1>ADMINISTRATOR</h1>
+<% end %>
+
+
+<p>Email: <%= @user['email'] %></p>
+<p>Address: <%= @user['address']['line1'] %>, <%= @user['address']['line2'] %>.
+        <%= @user['address']['state'] %>, <%= @user['address']['postcode'] %></p>
+
+<% if !is_admin? %>
+    <p>Number of samples taken: <%= @numsamples %></p>
+<% end %>
