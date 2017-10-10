@@ -8,20 +8,7 @@
       <%= f.label :name %>
       <%= f.text_field :name %>
       
-      <%= f.label :address_line1 %>
-      <%= f.text_field :address_line1 %>
       
-      <%= f.label :address_line2 %>
-      <%= f.text_field :address_line2 %>
-      
-      <%= f.label :postcode %>
-      <%= f.number_field :postcode %>
-      
-      <%= f.label :state %>
-      <%= f.text_field :state %>
-      
-      <%= f.label :email %>
-      <%= f.email_field :email %>
       
       <%= f.label :password %>
       <%= f.password_field :password %>
@@ -33,4 +20,65 @@
 
     <p>Already have an account? <%= link_to "Login here!", login_path %></p>
   </div>
+  
+<% provide(:title, 'Sign Up') %>
+
+
+<div class="center jumbotron">
+ <h1>Sign Up</h1>
+  <!--<div class="col-md-6 col-md-offset-3">-->
+    <%-# there's a bug that prints the same error twice -%>
+    <%= form_for(@user, url: signup_path) do |f| %>
+     <%= render 'shared/error_messages' %>
+      <div class="form-group row">
+        <div class="col-10">
+          <%= f.text_field :name, class: 'form-control', :placeholder => :name %>
+        </div>
+      </div>
+      
+      <div class="form-group row">
+        <div class="col-10">
+          <%= f.email_field :email, class: 'form-control', :placeholder => :email %>
+        </div>
+      </div>
+      
+      <div class="form-group row">
+        <div class="col-10">
+          <%= f.text_field :address_line1, class: 'form-control', :placeholder => :address_line1 %>
+        </div>
+      </div>
+      
+      <div class="form-group row">
+        <div class="col-10">
+          <%= f.text_field :address_line2, class: 'form-control', :placeholder => :address_line2 %>
+        </div>
+      </div>
+      
+      <div class="form-group row">
+        <div class="col-10">
+          <%= f.text_field :postcode, class: 'form-control', :placeholder => :postcode %>
+        </div>
+      </div>
+      
+      <div class="form-group row">
+        <div class="col-10">
+          <%= f.text_field :state, class: 'form-control', :placeholder => :state %>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-10">
+          <%= f.password_field :password, class: 'form-control', :placeholder => :password %>
+        </div>
+      </div>
+      
+      <div class="form-group row">
+        <div class="col-10">
+          <%= f.password_field :password_confirmation, class: 'form-control', :placeholder => :password_confirmation %>
+        </div>
+      </div>
+     
+      <%= f.submit "Create my account", class: "btn btn-primary" %>
+    <% end %>
+  <!--</div>-->
 </div>

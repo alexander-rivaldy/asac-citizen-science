@@ -5,15 +5,11 @@
     <h3>You have <%= @locations['data'].count %> samples.</h3>
     
     <div class="wrapper">
-        <%= link_to '<button type="button">MAP VIEW</button>'.html_safe, 
-            map_path %>
-        <%= link_to '<button type="button">LIST VIEW</button>'.html_safe, 
-            list_path %>
-        <%= link_to '<button type="button">GRID VIEW</button>'.html_safe, 
-            grid_path %>
+      <button class="btn-map <%= 'active' if params[:controller] == 'map' %>" id="change-map">Map View</button>
+      <button class="btn-map" id="change-list">List View</button>
+      <button class="btn-map" id="change-grid">Grid View</button>
     </div>
-
-
+    
     <div class="wrapper">
         
         

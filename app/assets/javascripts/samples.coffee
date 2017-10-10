@@ -10,17 +10,11 @@ jQuery ($) ->
     windows = []
     init = () ->
         $('#change-map').click ->
-            $('#map').css('display', 'block')
-            $('#list-view').css('display', 'none')
-            $('#grid-view').css('display', 'none')
+            window.location.href = map_path
         $('#change-list').click ->
-            $('#map').css('display', 'none')
-            $('#list-view').css('display', 'block')
-            $('#grid-view').css('display', 'none')
+            window.location.href = list_path
         $('#change-grid').click ->
-            $('#map').css('display', 'none')
-            $('#list-view').css('display', 'none')
-            $('#grid-view').css('display', 'block')
+            window.location.href = grid_path
         `
         var data = gon.locations['data']
         console.log(data);
@@ -123,21 +117,25 @@ jQuery ($) ->
                     "stylers":[{"color":"#00617f"},{"visibility":"on"}]
                 }]
        # Create the map with above options in div
-        map = new google.maps.Map(document.getElementById("map"),mapOptions) 
+        map = new google.maps.Map(document.getElementById("map"), mapOptions) 
         `function(){for(var sample in data){
             (function (sample){
                 var marker = new google.maps.Marker({
                             position: {lat: parseFloat(data[sample].lat), lng: parseFloat(data[sample].lng)},
                             map: map,
                             animation: google.maps.Animation.DROP,
-                            icon: 'http://maps.google.com/mapfiles/arrow.png',
+                            icon: 'http://maps.google.com/mapfiles/marker.png',
                             url: '/samples/' + data[sample].id
                           });
+                var content = '<div class="info-window">' + 
+                                '<p>' + data[sample].id + '</p>' +
+                                '<img src="' + data[sample].photo + '" class="info-photo"/>' +
+                                '</div>';
                 var infowindow = new google.maps.InfoWindow({
-                                content: '<p>'+data[sample].id+'</p><br/><img src="' +
-                                    data[sample].photo + '" style="max-width:200px;"/>',
+                                content: content,
                                 map:map,
-                                position: {lat: parseFloat(data[sample].lat), lng: parseFloat(data[sample].lng)}
+                                position: {lat: parseFloat(data[sample].lat), lng: parseFloat(data[sample].lng)},
+                                padding: 0,
                               });
                 infowindow.close();
                 marker.addListener('mouseover', function() {
@@ -150,6 +148,22 @@ jQuery ($) ->
                 marker.addListener('click', function() {
                     window.location.href = marker['url'];
                 });
+                
+                google.maps.event.addListener(infowindow, 'domready', function() {
+                    var iwOuter = $('.gm-style-iw');
+            
+                    var iwBackground = iwOuter.prev();
+                
+                    iwBackground.children(':nth-child(2)').css({'display' : 'none'});
+                
+                    iwBackground.children(':nth-child(4)').css({'display' : 'none'});
+                    
+                    iwBackground.children(':nth-child(1)').attr('style', function(i,s)
+                    { return s + 'display: none !important;'});
+                    
+                });
+                
+
             }).call(this, sample);
             
         }}()
