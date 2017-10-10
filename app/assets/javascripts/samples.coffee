@@ -10,22 +10,29 @@ jQuery ($) ->
     windows = []
     init = () ->
         $('#change-map').click ->
-            window.location.href = map_path
+            window.location.href = '/map'
         $('#change-list').click ->
-            window.location.href = list_path
+            window.location.href = '/list'
         $('#change-grid').click ->
-            window.location.href = grid_path
+            window.location.href = '/grid'
         `
-        var data = gon.locations['data']
+        var data = gon.locations['data'];
         console.log(data);
+        
         for(var sample in data){
-            $('#row-'+data[sample].id).click(function(){
-                if ($('#box-'+data[sample].id).css('display') === 'none')
-                    $('#box-'+data[sample].id).css('display', 'block')
-                else 
-                    $('#box-'+data[sample].id).css('display', 'none')
-            });
-        }`
+            (function (sample){
+                $('#row-'+data[sample].id).click(function(){
+                    if ($('#box-'+data[sample].id).css('display') === 'none')
+                        $('#box-'+data[sample].id).css('display', 'block')
+                    else 
+                        $('#box-'+data[sample].id).css('display', 'none')
+                });
+            }).call(this, sample);
+            
+        }
+        
+        
+        `
         # Setup map options
         mapOptions =
             center: new google.maps.LatLng(-37.8136, 144.9631)
