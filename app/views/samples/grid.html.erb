@@ -1,29 +1,23 @@
 <div class="center">
-    
     <div class="wrapper">
-        <button class="btn-map <%= 'active' if params[:controller] == 'map' %>" id="change-map">Map View</button>
+        <button class="btn-map" id="change-map">Map View</button>
         <button class="btn-map" id="change-list">List View</button>
-        <button class="btn-map" id="change-grid">Grid View</button>
+        <button class="btn-map active" id="change-grid">Grid View</button>
     </div>
     
     <div class="wrapper">
         <div id="grid-view">
-            <h3>You have <%= @locations['data'].count %> samples.</h3>
             <% @locations['data'].each do |sample| %>
                 <div class="grid">
-                    <h1> <%= sample['id'] %></h1>
                     <div class="crop">
                         <img src= "<%= sample['photo'] %>"/>
                     </div>
-                    <h3>Date / Time taken: <%= sample['datetime'] %></h3>
-                    <h3>Weather: <%= sample['weather'] %></h3>
-                    <h3>Latitude: <%= sample['lat'] %></h3>
-                    <h3>Longitude: <%= sample['lng'] %></h3>
-                    
-                    <table>
-                        
-                    </table>
-                    <%= link_to "Read more > ", samples_path(sample['id']) %>
+                    <h3>Sample ID: <%= sample['id'] %></h3>
+                    <p><b>Date/Time:</b> <%= sample['datetime'] %> <br/>
+                    <b>Weather:</b> <%= sample['weather'] %><br/>
+                    <b>Latitude:</b> <%= sample['lat'] %><br/>
+                    <b>Longitude:</b> <%= sample['lng'] %></p>
+                    <%= link_to "Read more > ", samples_path(sample['id']), class: 'read-more' %>
                 </div>
             <% end %>
         </div>
