@@ -1,3 +1,5 @@
+<% provide(:title, "My Samples") %>
+
 <div class="center">
     <div class="wrapper">
         <button class="btn-map" id="change-map">Map View</button>
@@ -9,9 +11,7 @@
         <div id="grid-view">
             <% @locations['data'].each do |sample| %>
                 <div class="grid">
-                    <div class="crop">
-                        <img src= "<%= sample['photo'] %>"/>
-                    </div>
+                    <img src= "<%= sample['photo'] %>"/>
                     <h3>Sample ID: <%= sample['id'] %></h3>
                     <p><b>Date/Time:</b> <%= sample['datetime'] %> <br/>
                     <b>Weather:</b> <%= sample['weather'] %><br/>

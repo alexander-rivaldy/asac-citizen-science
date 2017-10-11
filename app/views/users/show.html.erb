@@ -1,29 +1,31 @@
 <% provide(:title, "My Profile") %>
 
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-6 col-md-offset-3">
-            <div class="wrapper" >
-                <%= image_tag("profile.png", :alt => "Profile picture") %>
-                <h1><%= @user['name'] %>'s Profile</h1>
-                <% if is_admin? %>
-                    <h1>ADMINISTRATOR</h1>
-                <% end %>
-                <p>Email: <%= @user['email'] %></p>
-                <p>Address: <%= @user['address']['line1'] %>, <%= @user['address']['line2'] %>.
-                        <%= @user['address']['state'] %>, <%= @user['address']['postcode'] %></p>
-                <% if !is_admin? %>
-                    <p>Number of samples taken: <%= @numsamples %></p>
-                <% end %>
-                
-                <%= link_to '<button type="button">Edit Profile</button>'.html_safe, 
-                    edit_path %>
-                <%= link_to '<button type="button">Edit Address</button>'.html_safe, 
-                    editaddress_path %>
-                
+<div class="center jumbotron">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="wrapper wpr-profile" >
+                    <%= image_tag("profile.png", :alt => "Profile picture") %>
+                    <h1><%= @user['name'] %>'s Profile</h1>
+                    <% if is_admin? %>
+                        <h3>Administrator</h3>
+                    <% end %>
+                    <p><b>Email:</b> <%= @user['email'] %><br/>
+                    <b>Address:</b> <%= @user['address']['line1'] %>, <%= @user['address']['line2'] %>.
+                            <%= @user['address']['state'] %>, <%= @user['address']['postcode'] %></p>
+                    <% if !is_admin? %>
+                        <p>Number of samples taken: <%= @numsamples %></p>
+                    <% end %>
+                    
+                    <%= link_to '<button type="button">Edit Profile</button>'.html_safe, 
+                        edit_path %>
+                    <%= link_to '<button type="button">Edit Address</button>'.html_safe, 
+                        editaddress_path %>
+
+                </div>
             </div>
+            
         </div>
-        
     </div>
 </div>
 

@@ -1,57 +1,54 @@
-<% provide(:title, "My Samples") %>
+<% provide(:title, "Sampling Kit Requests") %>
 
-<div class="container">
-  
-  <div class="row justify-content-center">
-    <div class="col-md-6 col-md-offset-3">
-        <div class="wrapper">
-            <h1>All Sampling Kit Requests</h1><br>
-            <!--<button id="showapprove">Approved Requests</button>-->
-            <!--<button id="showunapprove">Un-approved Requests</button><br>-->
-            <table class="table">
-                <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Address</th>
-                    <th>Quantity</th>
-                    <th>Status</th>
-                </tr>
-                <% @users['data'].each do |user| %>
-                
-                    <%= form_for(@request, url: request_path) do |f| %>
-                    <tr class="<%= user['approved'] ? "approvedr" : "unapprovedr" %>">
-                        <td><%= user['name'] %></td>
-                        <td><%= mail_to user['email'] %></td>
+<div class="center">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="wrapper">
+                <h1>All Sampling Kit Requests</h1><br>
+                <!--<button id="showapprove">Approved Requests</button>-->
+                <!--<button id="showunapprove">Un-approved Requests</button><br>-->
+                <table class="table table-striped tbl-requests">
+                    <thead>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Address</th>
+                        <th>Quantity</th>
+                        <th>Status</th>
+                    </thead>
+                    <tbody>
+                        <% @users['data'].each do |user| %>
+                        <%= form_for(@request, url: request_path) do |f| %>
+                        <tr class="<%= user['approved'] ? "approvedr" : "unapprovedr" %>">
+                            <td><%= user['name'] %></td>
+                            <td><%= mail_to user['email'] %></td>
+                            
+                            <td>
+                                <%= user['address']['line1'] + ", " +
+                                    user['address']['line2'] + ". " +
+                                    user['address']['postcode'] + ", " +
+                                    user['address']['state'] + "." %>
+                            </td>
+                            <td><%= user['quantity'] %></td>
+                            <td>
+                                <% if !user['approved'] %>
+                                <%= f.hidden_field :request_id, :value => user['request_id'] %>
+                                <%= f.submit "Approve now", class: "btn btn-primary" %>
+                                <% elsif %>
+                                 Approved
+                                 <% end %>
+                            </td>
                         
-                        <td>
-                            <%= user['address']['line1'] + ", " +
-                                user['address']['line2'] + ". " +
-                                user['address']['postcode'] + ", " +
-                                user['address']['state'] + "." %>
-                        </td>
-                        <td><%= user['quantity'] %></td>
-                        <td>
-                            <% if !user['approved'] %>
-                            Pending
-                            <% elsif %>
-                             Approved
-                             <% end %>
-                        </td>
-                        <% if !user['approved'] %>
-                        <td>
-                            <%= f.hidden_field :request_id, :value => user['request_id'] %>
-                            <%= f.submit "Approve now", class: "btn btn-primary" %>
-                        </td>
+                        </tr>
                         <% end %>
-                    
-                    </tr>
-                    <% end %>
-                <% end %>
-            </table>
-            
+                        <% end %>
+                    </tbody>
+                </table>
+                
+            </div>
         </div>
+      </div>
     </div>
-  </div>
 </div>
 
 <script type="text/javascript">

@@ -1,88 +1,109 @@
 <% provide(:title, @sample['data']['name']) %>
 
-<h1><%= @sample['data']['name'] %> </h1>
-<img src= "<%= @data['photos'][0] %>" />
-<h2>General Information:</h2>
-<table>
-    <tr>
-        <th>Date Time Taken</th>
-        <td><%= @data['created'] %></td>
-    </tr>
-    <tr>
-        <th>Last Updated</th>
-        <td><%= @data['updated'] %></td>
-    </tr>
-    <tr>
-        <th>Weather</th>
-        <td><%= @data['weather'] %></td>
-    </tr>
-    <tr>
-        <th>Latitude</th>
-        <td><%= @data['lat'] %></td>
-    </tr>
-    <tr>
-        <th>Longitude</th>
-        <td><%= @data['lng'] %></td>
-    </tr>
-    <tr>
-        <th>Matrix</th>
-        <td><%= @data['matrix'] %></td>
-    </tr>
-    <tr>
-        <th>Reporting Limit</th>
-        <td><%= @data['reportingLimit'] %></td>
-    </tr>
-    <tr>
-        <th>Cycle Number</th>
-        <td><%= @data['cycleNumber'] %></td>
-    </tr>
-    <tr>
-        <th>pH</th>
-        <td><%= @data['ph'] %></td>
-    </tr>
-    <tr>
-        <th>Sample Mass</th>
-        <td><%= @data['sampleMass'] %></td>
-    </tr>
-    <tr>
-        <th>Conductivity at 25C</th>
-        <td><%= @data['conductivityAt25C'] %></td>
-    </tr>
-    <tr>
-        <th>Bicarbonate Alkalinity HCO3</th>
-        <td><%= @data['bicarbonateAlkalinityHCO3'] %></td>
-    </tr>
-    <tr>
-        <th>Carbonate Alkalinity CO3</th>
-        <td><%= @data['carbonateAlkalinityCO3'] %></td>
-    </tr>
-    <tr>
-        <th>Total Alkalinity CaCO3</th>
-        <td><%= @data['totalAlkalinityCaCO3'] %></td>
-    </tr>
-</table>
-
-<h2>Chemicals</h2>
-<table>
-    <% if @chemicals.present? %>
-         <% @chemicals.each do |chem| %>
-        
-        <tr>
-            <th><%= chem.keys[0] %></th>
-            <td><%= chem.values[0]['value'] + " " + chem.values[0]['units'] %></td>
-        </tr>
-        
-        <% end %>
+<div class="center jumbotron">
+    <div class="wrapper">
+        <nav class="breadcrumb bc-top">
+          <a class="breadcrumb-item" href="/">Home </a>
+          <a class="breadcrumb-item" href="/map">Samples </a>
+          <span class="breadcrumb-item active"><%= @sample['data']['name'] %> </span>
+        </nav>
+        <img src= "<%= @data['photos'][0] %>" class="img-detail" />
+    </div>
+    <div class="wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col col-detail">
+                    <h2>General Information</h2>
+                    <table class="table tbl-detail" align="center">
+                        <tr>
+                            <th>Name of Sample:</th>
+                            <td><%= @data['name'] %></td>
+                        </tr>
+                        <tr>
+                            <th>Date Time Taken:</th>
+                            <td><%= @data['created'] %></td>
+                        </tr>
+                        <tr>
+                            <th>Last Updated:</th>
+                            <td><%= @data['updated'] %></td>
+                        </tr>
+                        <tr>
+                            <th>Weather:</th>
+                            <td><%= @data['weather'] %></td>
+                        </tr>
+                        <tr>
+                            <th>Latitude:</th>
+                            <td><%= @data['lat'] %></td>
+                        </tr>
+                        <tr>
+                            <th>Longitude:</th>
+                            <td><%= @data['lng'] %></td>
+                        </tr>
+                        <tr>
+                            <th>Matrix:</th>
+                            <td><%= @data['matrix'] %></td>
+                        </tr>
+                        <tr>
+                            <th>Reporting Limit:</th>
+                            <td><%= @data['reportingLimit'] %></td>
+                        </tr>
+                        <tr>
+                            <th>Cycle Number:</th>
+                            <td><%= @data['cycleNumber'] %></td>
+                        </tr>
+                        <tr>
+                            <th>pH:</th>
+                            <td><%= @data['ph'] %></td>
+                        </tr>
+                        <tr>
+                            <th>Sample Mass:</th>
+                            <td><%= @data['sampleMass'] %></td>
+                        </tr>
+                        <tr>
+                            <th>Conductivity at 25C:</th>
+                            <td><%= @data['conductivityAt25C'] %></td>
+                        </tr>
+                        <tr>
+                            <th>Bicarbonate Alkalinity HCO3:</th>
+                            <td><%= @data['bicarbonateAlkalinityHCO3'] %></td>
+                        </tr>
+                        <tr>
+                            <th>Carbonate Alkalinity CO3:</th>
+                            <td><%= @data['carbonateAlkalinityCO3'] %></td>
+                        </tr>
+                        <tr>
+                            <th>Total Alkalinity CaCO3:</th>
+                            <td><%= @data['totalAlkalinityCaCO3'] %></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col col-detail">
+                    <h2>Chemicals</h2>
+                    <table class="table" align="center">
+                         <% @chemicals.each do |chem| %>
+                        
+                        <tr>
+                            <th><%= chem.keys[0] %>:</th>
+                            <td><%= chem.values[0]['value'] + " " + chem.values[0]['units'] %></td>
+                        </tr>
+                        
+                        <% end %>
+                    </table> 
+                </div>
+            </div>
+        </div>  
+    </div>
+    
+   
+    <% if @admin %>
+        <%= link_to '<button type="button">EDIT</button>'.html_safe, 
+                "edit/samples"+(@sample['id'].to_s) %>
     <% end %>
-</table>
+    
+    <%= raw @qr.as_html %>
+    <object data="<%= @svg %>" type="image/svg+xml" height="64"
+    width="64"/>
+</div>
 
-<% if @admin %>
-    <%= link_to '<button type="button">EDIT</button>'.html_safe, 
-            "edit/samples"+(@sample['id'].to_s) %>
-<% end %>
 
-<%= raw @qr.as_html %>
-<object data="<%= @svg %>" type="image/svg+xml" height="64"
-width="64"/>
 
-<%= session[:admin] %>
