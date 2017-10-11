@@ -25,8 +25,8 @@ class UsersController < ApplicationController
     
     if(@password.eql? @passwordconf)
       @params ={ "email" => params[:email].downcase, "password" => @password,
-                "name" => params[:name], "line1" => params[:address_line1],
-                "line2" => params[:address_line2] ,
+                "name" => params[:name], "line1" => params[:address_line_1],
+                "line2" => params[:address_line_2] ,
                 "postcode" => params[:postcode], "state" => params[:state]}
       @register = RestClient.post "https://citsciapp.herokuapp.com/register",
               @params.to_json, {content_type: :json, accept: :json}
