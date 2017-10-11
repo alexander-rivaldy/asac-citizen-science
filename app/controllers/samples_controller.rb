@@ -78,7 +78,7 @@ class SamplesController < ApplicationController
             @params.to_json, {content_type: :json, accept: :json}
         @locations = JSON.parse(@locations)
         
-        @locations['data'].sort_by { |sample| sample['id'].to_i }
+        
         
         gon.locations = @locations
     end

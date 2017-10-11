@@ -16,6 +16,11 @@ class UsersController < ApplicationController
   end
    
   def edit
+    if(session[:token].nil?)
+           
+        redirect_to login_path
+         flash[:danger] = "YOU ARE NOT LOGGED IN"
+    end
     @params = {"token" => session[:token], "refresh_token" => session[:refresh_token]}
     @user = RestClient.post ("https://citsciapp.herokuapp.com/profile"),
         @params.to_json, {content_type: :json, accept: :json}
@@ -39,6 +44,10 @@ class UsersController < ApplicationController
   end
   
   def editaddress
+    if(session[:token].nil?)
+       redirect_to login_path
+       flash[:danger] = "YOU ARE NOT LOGGED IN"
+    end
     @params = {"token" => session[:token], "refresh_token" => session[:refresh_token]}
     @user = RestClient.post ("https://citsciapp.herokuapp.com/profile"),
         @params.to_json, {content_type: :json, accept: :json}
@@ -95,6 +104,33 @@ class UsersController < ApplicationController
       
     end
     
+  end
+  
+  def requests
+    if(session[:admin])
+        @admin = true
+    end
+    if(!@admin)
+      redirect_to profile_path
+      return
+    end
+    @params = {"token" => session[:token], "refresh_token" => session[:refresh_token]}
+    @users = RestClient.post ("https://citsciapp.herokuapp.com/requests/all"),
+        @params.to_json, {content_type: :json, accept: :json}
+    @users = JSON.parse(@users)
+    
+    @request = ""
+  end
+  
+  def approverequest
+    @params = {"token" => session[:token], 
+              "refresh_token" => session[:refresh_token],
+              "approved" => true,
+              "request_id" => params[:request_id]
+    }
+    @approve = RestClient.post ("https://citsciapp.herokuapp.com/requests/update"),
+        @params.to_json, {content_type: :json, accept: :json}
+    @approve = JSON.parse(@approve)
   end
   
   

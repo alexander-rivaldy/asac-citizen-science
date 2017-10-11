@@ -19,6 +19,9 @@ Rails.application.routes.draw do
   get '/editaddress' => 'users#editaddress'
   post '/editaddress' => 'users#updateaddress'
   
+  get '/request' => 'users#requests'
+  post '/request' => 'users#approverequest'
+  
   get 'static_pages/home'
 
   get 'static_pages/help'
