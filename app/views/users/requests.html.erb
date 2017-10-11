@@ -18,7 +18,7 @@
                 </tr>
                 <% @users['data'].each do |user| %>
                 
-                    <%= form_for(@request, url: request_path) do |f| %>
+                    
                     <tr class="<%= user['approved'] ? "approvedr" : "unapprovedr" %>">
                         <td><%= user['name'] %></td>
                         <td><%= mail_to user['email'] %></td>
@@ -39,13 +39,15 @@
                         </td>
                         <% if !user['approved'] %>
                         <td>
+                            <%= form_for(@request, url: request_path) do |f| %>
                             <%= f.hidden_field :request_id, :value => user['request_id'] %>
                             <%= f.submit "Approve now", class: "btn btn-primary" %>
+                            <% end %>
                         </td>
                         <% end %>
                     
                     </tr>
-                    <% end %>
+                    
                 <% end %>
             </table>
             

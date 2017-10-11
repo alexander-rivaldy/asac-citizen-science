@@ -40,7 +40,7 @@ class SamplesController < ApplicationController
         # @qr = RQRCode::QRCode.new(request.original_url, 
         #     :size => 7, :level => :h )
             
-        @qrcode = RQRCode::QRCode.new("http://github.com/")
+        @qrcode = RQRCode::QRCode.new(request.original_url)
         # With default options specified explicitly
         @png = @qrcode.as_png(
                   resize_gte_to: false,
@@ -52,7 +52,6 @@ class SamplesController < ApplicationController
                   module_px_size: 6,
                   file: nil # path to write
                   )
-        puts @png
         
     end
     

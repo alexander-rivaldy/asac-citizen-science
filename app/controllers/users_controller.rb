@@ -210,15 +210,33 @@ class UsersController < ApplicationController
   def approverequest
     @params = {"token" => session[:token], 
               "refresh_token" => session[:refresh_token],
-              "approved" => true,
+              "approved" => "true",
               "request_id" => params[:request_id]
     }
     @approve = RestClient.post ("https://citsciapp.herokuapp.com/requests/update"),
         @params.to_json, {content_type: :json, accept: :json}
     @approve = JSON.parse(@approve)
     
+    puts session[:token]
+    puts session[:refresh_token]
+    puts @approve
+    
+    @pngs = []
+    
     @approve['kitcodes'].each do |kitcode|
-      
+      @qrcode = RQRCode::QRCode.new(kitcode)
+      # With default options specified explicitly
+      @png = @qrcode.as_png(
+                resize_gte_to: false,
+                resize_exactly_to: false,
+                fill: 'white',
+                color: 'black',
+                size: 120,
+                border_modules: 4,
+                module_px_size: 6,
+                file: nil # path to write
+                )
+      @pngs.push(@png)
     end
     
   end

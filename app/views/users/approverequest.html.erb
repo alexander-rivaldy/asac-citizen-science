@@ -1,2 +1,21 @@
 
 
+<% provide(:title, "My Samples") %>
+
+<div class="center">
+    
+    <h1>QR Codes for sampling kits</h1>
+    <div class="wrapper">
+        <div id="list-view">
+            <div class="container">
+                
+                <% @pngs.each do |png| %>
+                    <div class="row justify-content-center">
+                        <%= image_tag png.to_data_url %>
+                    </div>
+                <% end %>
+                
+            </div>
+        </div>
+    </div>
+</div>
