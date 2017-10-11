@@ -94,7 +94,7 @@ textarea {
 
 .center {
   text-align: center;
-  margin: 1.5em 0 7em;
+  margin: 1em 0 7em;
 }
 
 .jumbotron {
@@ -118,6 +118,16 @@ textarea {
 .wrapper {
   min-height: 2vh;
   max-height: 100%;
+}
+
+.wpr-profile {
+  h3 {
+    margin: 0;
+  }
+  
+  p {
+    color: #fff;
+  }
 }
 
 .col {
@@ -163,6 +173,7 @@ button, .btn {
   text-decoration: none;
   border-color: transparent;
   border-style: none;
+  outline: none;
   
   &:hover {
     color: #fff;
@@ -271,41 +282,33 @@ form {
   padding: 1em;
 }
 
-/* Map View */
+/* Sample Kit Requests */
+.tbl-requests {
+  a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bolder;
+    
+    &:hover {
+      color: #ccc;
+      text-decoration: none;
+    }
+  }
+  th {
+    padding: 1em;
+    text-align: center;
+    background: rgba(0,0,0,0.1);
+  }
+  td {
+    padding: 1em;
+    text-align: center;
+  }
+}
 
-// .info-window {
-//   padding: 0;
-//   margin: 0;
-// }
+.table-striped tbody tr:nth-of-type(even) {
+    background: rgba(0,0,0,0.03);
+}
 
-// .info-photo {
-//   margin: 0;
-//   padding: 0;
-//   width: 200px;
-//   height: 125px;
-//   border-radius: 8px;
-// }
-
-// .gm-style {
-//   padding: 0;
-//   width: 200px;
-// }
-// .gm-style .gm-style-iw {
-//   background-color: #fff !important;
-//   border: none;
-//   top: 0 !important;
-//   left: 0 !important;
-//   right: 0 !important;
-//   height: 100% !important;
-//   min-height: 105px !important;
-//   padding-top: 5px;
-//   display: block !important;
-// }  
-
-// /* List View */
-// .row {
-//   border: none;
-// }
     
 /* Typography */
 
