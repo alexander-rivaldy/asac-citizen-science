@@ -74,6 +74,12 @@
     <% end %>
 </table>
 
+<%= raw @qr.as_html %>
+<object data="<%= @svg %>" type="image/svg+xml" height="64"
+width="64"/>
+
 <% if is_admin? %>
+    <%= link_to '<button type="button">EDIT</button>'.html_safe, 
+            edit_path(sample['id']) %>
     <button>Edit</button>
 <% end %>

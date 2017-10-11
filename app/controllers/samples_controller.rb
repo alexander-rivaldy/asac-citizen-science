@@ -1,4 +1,5 @@
 class SamplesController < ApplicationController
+    
    def new
         @sample = Sample.new
     end
@@ -14,6 +15,7 @@ class SamplesController < ApplicationController
     end
     
     def show
+        
         if(session[:token].nil?)
            
             redirect_to login_path
@@ -26,6 +28,15 @@ class SamplesController < ApplicationController
         @sample = JSON.parse(@sample)
         @data = @sample['data']
         @chemicals = @sample['data']['chemicals']
+        
+        @qrcode = RQRCode::QRCode.new(request.original_url)
+        # With default options specified explicitly
+        @svg = @qrcode.as_svg(offset: 0, color: '000', 
+                            shape_rendering: 'crispEdges', 
+                            module_size: 11)
+        @qr = RQRCode::QRCode.new(request.original_url, 
+            :size => 7, :level => :h )
+        
     end
     
     def map 
