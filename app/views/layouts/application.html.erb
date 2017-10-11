@@ -8,11 +8,18 @@
     <%= csrf_meta_tags %>
     <%= render 'layouts/shim' %>
   </head>
-  <%= render 'layouts/header' unless @skip_header %>
+
   <body>
-  
-  <%= yield %>
+  <div class="flex-container">
+    <div class="flex-item">
+      <%= render 'layouts/header' unless @skip_header %>
+      <div class="content">
+         <%= yield %>
+      </div>
+      <%= render 'layouts/footer' unless @skip_footer %>
+    </div>
+  </div>
+ 
   
   </body>
-  <%= render 'layouts/footer' unless @skip_footer %>
 </html>
