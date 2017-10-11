@@ -1,30 +1,41 @@
 <% provide(:title, "My Samples") %>
 
 <div class="center">
-    
     <div class="wrapper">
-        <button class="btn-map <%= 'active' if params[:controller] == 'map' %>" id="change-map">Map View</button>
-        <button class="btn-map" id="change-list">List View</button>
+        <button class="btn-map" id="change-map">Map View</button>
+        <button class="btn-map active" id="change-list">List View</button>
         <button class="btn-map" id="change-grid">Grid View</button>
     </div>
-
-
     <div class="wrapper">
         <div id="list-view">
-            <h3>You have <%= @locations['data'].count %> samples.</h3>
-            <% @locations['data'].each do |sample| %>
-            <div class="row" id="row-<%= sample['id'] %>">
-                <h1 class="row-h1"> <%= sample['id'] %></h1>
-                
-                <div class="box-list" id="box-<%= sample['id'] %>">
-                    <div class="crop">
-                        <img src= "<%= sample['photo'] %>"/>
+            <h3>You have <%=@locations['data'].count %> number of samples.</h3>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col">
+                        <div class="tabs-left">
+                            <ul class="nav nav-tabs">
+                                <% @locations['data'].each do |sample| %>
+
+                                <li><h1 class="row-h1 <%= 'active' if sample == @locations['data'].last %>" data-toggle="tab" id="row-<%= sample['id'] %>">Sample ID: <%= sample['id'] %></h1></li>
+                                <% end %>
+        
+                            </ul>
+                        </div>
                     </div>
-                    
-                    <%= link_to "Read more > ", samples_path(sample['id']) %>
+                    <div class="col" id="col-content">
+                        <div class="tab-content">
+                            <% @locations['data'].each do |sample| %>
+                            <div class="tab-pane" id="box-<%= sample['id'] %>">
+                                <div class="box-list">
+                                    <img src= "<%= sample['photo'] %>"/>
+                                    <%= link_to "Read more > ", samples_path(sample['id']), class: 'read-more' %>
+                                </div>
+                            </div>
+                            <% end %>
+                        </div>
+                    </div>
+                </div>
                 </div>
             </div>
-            <% end %>
-        </div>
     </div>
 </div>

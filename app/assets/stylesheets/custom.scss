@@ -6,11 +6,29 @@ body {
   color: #fff;
   background: #034851;
   margin: 0;
+}
+
+.flex-container {
   width: 100%;
-  height: 100vh;
+  height: 100%;
   max-width: 100%;
   display: flex;
+  justify-content: center;
   flex-direction: column;
+}
+
+.flex-item {
+  align-self: center;
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+  max-height: 100%;
+}
+
+.content {
+  flex: 1;
+  overflow: auto;
+  min-height: 100%;
 }
 
 header, footer {
@@ -57,12 +75,11 @@ header {
 
 footer {
   font-size: small;
-  clear: both;
-  overflow: hidden;
-  position: absolute;
-
-  padding: 2em;
+  position: fixed;
   bottom: 0;
+  overflow: hidden;
+  padding: 1em 2em;
+  
   left: 0;
   right: 0;
 }
@@ -77,19 +94,17 @@ textarea {
 
 .center {
   text-align: center;
-  overflow: hidden;
 }
 
 .jumbotron {
   position: relative;
   width: inherit;
-  height: 100%;
+  min-height: 80vh;
   clear: both;
   
   display: flex;
   justify-content: center;
   flex-direction: column;
-
 }
 
 .container {
@@ -101,6 +116,11 @@ textarea {
 
 .wrapper {
   min-height: 2vh;
+  max-height: 100%;
+}
+
+.col {
+  clear: both;
 }
 
 /* Smaller Elements */
@@ -179,18 +199,22 @@ button, .btn {
   
   &:hover {
     color: #fff;
-    background:  #00838f;
+    background:  transparent;
     text-decoration: none;
-    border-color: transparent;
+    border-bottom: solid thick #00838f;
     outline: none;
   }
-  
+
   &:focus {
     outline: none;
   }
-  
 }
-
+.btn-map.active {
+  color: #fff;
+  text-decoration: none;
+  border-bottom: solid thick #00838f;
+  outline: none;
+}
 
 /* Forms */
 form {
@@ -223,7 +247,7 @@ form {
   padding: 1em;
 }
 
-/* Sample Views */
+/* Map View */
 
 .info-window {
   padding: 0;
@@ -253,6 +277,11 @@ form {
   padding-top: 5px;
   display: block !important;
 }  
+
+// /* List View */
+// .row {
+//   border: none;
+// }
     
 /* Typography */
 

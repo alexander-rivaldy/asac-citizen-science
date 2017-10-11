@@ -21,7 +21,15 @@ jQuery ($) ->
         
         for(var sample in data){
             (function (sample){
+                if ($('#row-'+data[sample].id).hasClass('active')) {
+                    $('#box-'+data[sample].id).css('display', 'block')
+                }
+                
                 $('#row-'+data[sample].id).click(function(){
+                    $('.row-h1').removeClass('active');
+                    $('#row-'+data[sample].id).addClass('active');
+                    $('.tab-pane').css('display', 'none');
+                    
                     if ($('#box-'+data[sample].id).css('display') === 'none')
                         $('#box-'+data[sample].id).css('display', 'block')
                     else 
