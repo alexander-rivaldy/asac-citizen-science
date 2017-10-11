@@ -64,22 +64,25 @@
 
 <h2>Chemicals</h2>
 <table>
-     <% @chemicals.each do |chem| %>
-    
-    <tr>
-        <th><%= chem.keys[0] %></th>
-        <td><%= chem.values[0]['value'] + " " + chem.values[0]['units'] %></td>
-    </tr>
-    
+    <% if @chemicals.present? %>
+         <% @chemicals.each do |chem| %>
+        
+        <tr>
+            <th><%= chem.keys[0] %></th>
+            <td><%= chem.values[0]['value'] + " " + chem.values[0]['units'] %></td>
+        </tr>
+        
+        <% end %>
     <% end %>
 </table>
+
+<% if @admin %>
+    <%= link_to '<button type="button">EDIT</button>'.html_safe, 
+            "edit/samples"+(@sample['id'].to_s) %>
+<% end %>
 
 <%= raw @qr.as_html %>
 <object data="<%= @svg %>" type="image/svg+xml" height="64"
 width="64"/>
 
-<% if is_admin? %>
-    <%= link_to '<button type="button">EDIT</button>'.html_safe, 
-            edit_path(sample['id']) %>
-    <button>Edit</button>
-<% end %>
+<%= session[:admin] %>

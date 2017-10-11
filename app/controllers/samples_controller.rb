@@ -21,7 +21,10 @@ class SamplesController < ApplicationController
             redirect_to login_path
              flash[:danger] = "YOU ARE NOT LOGGED IN"
         end
-       
+        if(session[:admin])
+            @admin = true
+        end
+        
         @params = {"token" => session[:token], "refresh_token" => session[:refresh_token]}
         @sample = RestClient.post ("https://citsciapp.herokuapp.com/sample/" + params['id'].to_s),
             @params.to_json, {content_type: :json, accept: :json}
@@ -46,11 +49,17 @@ class SamplesController < ApplicationController
              flash[:danger] = "YOU ARE NOT LOGGED IN"
         end
        
-        
-        @params = {"token" => session[:token], "refresh_token" => session[:refresh_token]}
-        @locations = RestClient.post 'https://citsciapp.herokuapp.com/samples', 
-            @params.to_json, {content_type: :json, accept: :json}
-        @locations = JSON.parse(@locations)
+        if(session[:admin])
+            @params = {"token" => session[:token], "refresh_token" => session[:refresh_token]}
+            @locations = RestClient.post 'https://citsciapp.herokuapp.com/samples', 
+                @params.to_json, {content_type: :json, accept: :json}
+            @locations = JSON.parse(@locations)
+        else
+            @params = {"token" => session[:token], "refresh_token" => session[:refresh_token]}
+            @locations = RestClient.post 'https://citsciapp.herokuapp.com/samples', 
+                @params.to_json, {content_type: :json, accept: :json}
+            @locations = JSON.parse(@locations)
+        end
         
         gon.locations = @locations
     end
@@ -63,10 +72,13 @@ class SamplesController < ApplicationController
         end
        
         
+        
         @params = {"token" => session[:token], "refresh_token" => session[:refresh_token]}
         @locations = RestClient.post 'https://citsciapp.herokuapp.com/samples', 
             @params.to_json, {content_type: :json, accept: :json}
         @locations = JSON.parse(@locations)
+        
+        @locations['data'].sort_by { |sample| sample['id'].to_i }
         
         gon.locations = @locations
     end
