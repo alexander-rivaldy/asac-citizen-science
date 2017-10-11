@@ -32,14 +32,19 @@ class SamplesController < ApplicationController
         @data = @sample['data']
         @chemicals = @sample['data']['chemicals']
         
-        # @qrcode = RQRCode::QRCode.new(request.original_url)
-        # # With default options specified explicitly
-        # @svg = @qrcode.as_svg(offset: 0, color: '000', 
-        #                     shape_rendering: 'crispEdges', 
-        #                     module_size: 11)
-        # @qr = RQRCode::QRCode.new(request.original_url, 
-        #     :size => 7, :level => :h )
-            
+        @sampleMass = 
+            JSON.parse(@data['sampleMass'].tr(':','"').tr('=>','":'))
+        @conductivityAt25C = 
+            JSON.parse(@data['conductivityAt25C'].tr(':','"').tr('=>','":'))
+        @bicarbonateAlkalinityHCO3 = 
+            JSON.parse(@data['bicarbonateAlkalinityHCO3'].tr(':','"').tr('=>','":'))
+        @carbonateAlkalinityCO3 = 
+            JSON.parse(@data['carbonateAlkalinityCO3'].tr(':','"').tr('=>','":'))
+        @totalAlkalinityCaCO3 = 
+            JSON.parse(@data['totalAlkalinityCaCO3'].tr(':','"').tr('=>','":'))
+        
+        
+        
         @qrcode = RQRCode::QRCode.new(request.original_url)
         # With default options specified explicitly
         @png = @qrcode.as_png(

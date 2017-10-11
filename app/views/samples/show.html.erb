@@ -57,41 +57,44 @@
                         </tr>
                         <tr>
                             <th>Sample Mass:</th>
-                            <td><%= @data['sampleMass'] %></td>
+                            <td><%= @sampleMass['value'] + " " + @sampleMass['units'] %></td>
                         </tr>
                         <tr>
                             <th>Conductivity at 25C:</th>
-                            <td><%= @data['conductivityAt25C'] %></td>
+                            <td><%= @conductivityAt25C['value'] + " " + @conductivityAt25C['units'] %></td>
                         </tr>
                         <tr>
                             <th>Bicarbonate Alkalinity HCO3:</th>
-                            <td><%= @data['bicarbonateAlkalinityHCO3'] %></td>
-                        </tr>
+                            <td><%= @bicarbonateAlkalinityHCO3['value'] + " " + @bicarbonateAlkalinityHCO3['units'] %></td>
+                       </tr>
                         <tr>
                             <th>Carbonate Alkalinity CO3:</th>
-                            <td><%= @data['carbonateAlkalinityCO3'] %></td>
+                            <td><%= @carbonateAlkalinityCO3['value'] + " " + @carbonateAlkalinityCO3['units'] %></td>
                         </tr>
                         <tr>
                             <th>Total Alkalinity CaCO3:</th>
-                            <td><%= @data['totalAlkalinityCaCO3'] %></td>
+                            <td><%= @totalAlkalinityCaCO3['value'] + " " + @totalAlkalinityCaCO3['units'] %></td>
                         </tr>
                     </table>
                 </div>
                 <div class="col col-detail">
                     <h2>Chemicals</h2>
                     <table class="table" align="center">
-                         <% @chemicals.each do |chem| %>
-                        
-                        <tr>
-                            <th><%= chem.keys[0] %>:</th>
-                            <td><%= chem.values[0]['value'] + " " + chem.values[0]['units'] %></td>
-                        </tr>
-                        
+                        <% if @chemicals.present? %>
+                             <% @chemicals.each do |chem| %>
+                            
+                            <tr>
+                                <th><%= chem.keys[0] %>:</th>
+                                <td><%= chem.values[0]['value'] + " " + chem.values[0]['units'] %></td>
+                            </tr>
+                            
+                            <% end %>
                         <% end %>
                     </table> 
                 </div>
             </div>
-        </div>  
+        </div> 
+        <%= image_tag @png.to_data_url %>
     </div>
     
    
@@ -99,7 +102,7 @@
         <%= link_to '<button type="button">EDIT</button>'.html_safe, 
                 "edit/samples"+(@sample['id'].to_s) %>
     <% end %>
-    <%= image_tag @png.to_data_url %>
+    
 </div>
 
 
