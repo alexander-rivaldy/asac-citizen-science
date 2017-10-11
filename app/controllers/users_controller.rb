@@ -131,6 +131,11 @@ class UsersController < ApplicationController
     @approve = RestClient.post ("https://citsciapp.herokuapp.com/requests/update"),
         @params.to_json, {content_type: :json, accept: :json}
     @approve = JSON.parse(@approve)
+    
+    @approve['kitcodes'].each do |kitcode|
+      
+    end
+    
   end
   
   
