@@ -95,7 +95,15 @@
     </div>
     
    
-    <% if is_admin? %>
-        <button>Edit</button>
+    <% if @admin %>
+        <%= link_to '<button type="button">EDIT</button>'.html_safe, 
+                "edit/samples"+(@sample['id'].to_s) %>
     <% end %>
+    
+    <%= raw @qr.as_html %>
+    <object data="<%= @svg %>" type="image/svg+xml" height="64"
+    width="64"/>
 </div>
+
+
+

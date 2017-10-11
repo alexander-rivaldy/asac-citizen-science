@@ -24,6 +24,8 @@ module SessionsHelper
     end
     
     def is_admin?
-        !session[:admin].nil?
+        if session[:admin]
+            true
+        end
     end
 end

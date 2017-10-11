@@ -1,4 +1,5 @@
 class SamplesController < ApplicationController
+    
    def new
         @sample = Sample.new
     end
@@ -14,18 +15,31 @@ class SamplesController < ApplicationController
     end
     
     def show
+        
         if(session[:token].nil?)
            
             redirect_to login_path
              flash[:danger] = "YOU ARE NOT LOGGED IN"
         end
-       
+        if(session[:admin])
+            @admin = true
+        end
+        
         @params = {"token" => session[:token], "refresh_token" => session[:refresh_token]}
         @sample = RestClient.post ("https://citsciapp.herokuapp.com/sample/" + params['id'].to_s),
             @params.to_json, {content_type: :json, accept: :json}
         @sample = JSON.parse(@sample)
         @data = @sample['data']
         @chemicals = @sample['data']['chemicals']
+        
+        @qrcode = RQRCode::QRCode.new(request.original_url)
+        # With default options specified explicitly
+        @svg = @qrcode.as_svg(offset: 0, color: '000', 
+                            shape_rendering: 'crispEdges', 
+                            module_size: 11)
+        @qr = RQRCode::QRCode.new(request.original_url, 
+            :size => 7, :level => :h )
+        
     end
     
     def map 
@@ -35,11 +49,17 @@ class SamplesController < ApplicationController
              flash[:danger] = "YOU ARE NOT LOGGED IN"
         end
        
-        
-        @params = {"token" => session[:token], "refresh_token" => session[:refresh_token]}
-        @locations = RestClient.post 'https://citsciapp.herokuapp.com/samples', 
-            @params.to_json, {content_type: :json, accept: :json}
-        @locations = JSON.parse(@locations)
+        if(session[:admin])
+            @params = {"token" => session[:token], "refresh_token" => session[:refresh_token]}
+            @locations = RestClient.post 'https://citsciapp.herokuapp.com/samples', 
+                @params.to_json, {content_type: :json, accept: :json}
+            @locations = JSON.parse(@locations)
+        else
+            @params = {"token" => session[:token], "refresh_token" => session[:refresh_token]}
+            @locations = RestClient.post 'https://citsciapp.herokuapp.com/samples', 
+                @params.to_json, {content_type: :json, accept: :json}
+            @locations = JSON.parse(@locations)
+        end
         
         gon.locations = @locations
     end
@@ -52,10 +72,13 @@ class SamplesController < ApplicationController
         end
        
         
+        
         @params = {"token" => session[:token], "refresh_token" => session[:refresh_token]}
         @locations = RestClient.post 'https://citsciapp.herokuapp.com/samples', 
             @params.to_json, {content_type: :json, accept: :json}
         @locations = JSON.parse(@locations)
+        
+        
         
         gon.locations = @locations
     end
@@ -101,6 +124,7 @@ class SamplesController < ApplicationController
     end
     
     def update
+        # not implemented yet
         @params = {"token" => session[:token], "refresh_token" => session[:refresh_token]}
         @sample = RestClient.post ("https://citsciapp.herokuapp.com/sample/" + params['id'].to_s),
             @params.to_json, {content_type: :json, accept: :json}

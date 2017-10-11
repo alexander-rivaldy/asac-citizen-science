@@ -17,6 +17,16 @@ class SessionsController < ApplicationController
       session[:refresh_token] = @json["refresh_token"]
       session[:name] = @json["name"]
       redirect_to map_path
+      
+      @params = {"token" => session[:token], "refresh_token" => session[:refresh_token]}
+      @user = RestClient.post ("https://citsciapp.herokuapp.com/profile"),
+          @params.to_json, {content_type: :json, accept: :json}
+      @user = JSON.parse(@user)
+      
+      if(@user['role'].eql? "admin")
+        session[:admin] = true
+      end
+      
     end
     
     
