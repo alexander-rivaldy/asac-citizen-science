@@ -13,8 +13,11 @@ Rails.application.routes.draw do
   get  '/signup',  to: 'users#new'
   post '/signup',  to: 'users#create'
   
-  get '/editaddress' => 'users#edit'
-  post '/editaddress' => 'users#update'
+  get '/edit' => 'users#edit'
+  post '/edit' => 'users#update'
+  
+  get '/editaddress' => 'users#editaddress'
+  post '/editaddress' => 'users#updateaddress'
   
   get 'static_pages/home'
 

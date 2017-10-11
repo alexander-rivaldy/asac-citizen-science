@@ -14,8 +14,31 @@ class UsersController < ApplicationController
     @numsamples = @sample['data'].count
     
   end
-  
+   
   def edit
+    @params = {"token" => session[:token], "refresh_token" => session[:refresh_token]}
+    @user = RestClient.post ("https://citsciapp.herokuapp.com/profile"),
+        @params.to_json, {content_type: :json, accept: :json}
+    @user = JSON.parse(@user)
+    @edit = ""
+  end
+  
+  def update
+    
+    # API function not yet implemented
+    @params = {"token" => session[:token], 
+                "refresh_token" => session[:refresh_token],
+                "name" => params[:name],
+                "email" => params[:email]
+    }
+    redirect_to profile_path
+    return
+    @user = RestClient.post ("https://citsciapp.herokuapp.com/update"),
+        @params.to_json, {content_type: :json, accept: :json}
+    @user = JSON.parse(@user)
+  end
+  
+  def editaddress
     @params = {"token" => session[:token], "refresh_token" => session[:refresh_token]}
     @user = RestClient.post ("https://citsciapp.herokuapp.com/profile"),
         @params.to_json, {content_type: :json, accept: :json}
@@ -24,7 +47,7 @@ class UsersController < ApplicationController
     
   end
   
-  def update
+  def updateaddress
     @line1 = params[:line1]
     @line2 = params[:line2]
     @postcode = params[:postcode]

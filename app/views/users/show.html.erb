@@ -16,8 +16,11 @@
                     <p>Number of samples taken: <%= @numsamples %></p>
                 <% end %>
                 
+                <%= link_to '<button type="button">Edit Profile</button>'.html_safe, 
+                    edit_path %>
                 <%= link_to '<button type="button">Edit Address</button>'.html_safe, 
                     editaddress_path %>
+                
             </div>
         </div>
         

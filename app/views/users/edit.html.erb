@@ -1,44 +1,35 @@
-<% provide(:title, "Edit Address") %>
-<div class="center jumbotron">
-  <h1>Edit Address</h1>
 
-  <div class="container">
-      <div class="row jutify-content-center">
-        <div class="col-md-6 col-md-offset-3">
-          <%= form_for(@update, url: editaddress_path) do |f| %>
-      
-            <div class="form-group row">
-              <div class="col-10">
-                <%= f.text_field :line1, class: 'form-control', 
-                     :value => @user['address']['line1'] %>
-              </div>
+  
+<% provide(:title, 'Edit Profile') %>
+
+
+<div class="center jumbotron">
+ <h1>Edit Profile</h1>
+  <!--<div class="col-md-6 col-md-offset-3">-->
+    <%-# there's a bug that prints the same error twice -%>
+    <%= form_for(@edit, url: edit_path) do |f| %>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col">
+          <div class="form-group row">
+            <div class="col-10">
+              <%= f.text_field :name, class: 'form-control', 
+                  :value => @user['name'] %>
             </div>
-            <div class="form-group row">
-              <div class="col-10">
-                <%= f.text_field :line2, class: 'form-control', 
-                     :value => @user['address']['line2'] %>
-              </div>
+          </div>
+        <div class="col">
+          <div class="form-group row">
+            <div class="col-10">
+              <%= f.email_field :email, class: 'form-control', 
+                  :value => @user['email'] %>
             </div>
-            <div class="form-group row">
-              <div class="col-10">
-                <%= f.text_field :postcode, class: 'form-control', 
-                     :value => @user['address']['postcode'] %>
-              </div>
-            </div>
-            <div class="form-group row">
-              <div class="col-10">
-                  <%= f.text_field :state, class: 'form-control', 
-                     :value => @user['address']['state'] %>
-              </div>
-            </div>
-            
-            <%= f.submit "Update", class: "btn btn-primary" %>
-            <% end %>
-      
-          
-          
+          </div>
+        </div>
         </div>
       </div>
-  </div>
-
+    </div>
+  
+      <%= f.submit "Update my profile", class: "btn btn-primary" %>
+    <% end %>
+  <!--</div>-->
 </div>
