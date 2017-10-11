@@ -93,7 +93,10 @@ textarea {
 }
 
 .container {
-  padding: 0em 20vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
 }
 
 .wrapper {
@@ -196,6 +199,7 @@ form {
 }
     
 .row {
+  text-align: center;
   display: flex;
   margin: 1em;
 }
