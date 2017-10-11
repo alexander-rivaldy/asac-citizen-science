@@ -1,4 +1,16 @@
 Rails.application.routes.draw do
+  match "/404", :to => "errors#not_found", :via => :all
+  match "/500", :to => "errors#internal_server_error", :via => :all
+  
+  get "/404", :to => "errors#not_found"
+  get "/500", :to => "errors#internal_server_error"
+
+  
+  if Rails.env.production?
+     get '404', :to => 'errors#not_found'
+     get '500', :to => 'errors#internal_server_error'
+  end
+  
   get 'sessions/new'
 
   get 'samples/new'
@@ -22,7 +34,6 @@ Rails.application.routes.draw do
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
-  
   
   
   resources :users
