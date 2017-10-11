@@ -94,6 +94,7 @@ textarea {
 
 .center {
   text-align: center;
+  margin: 1.5em 0 7em;
 }
 
 .jumbotron {
@@ -121,6 +122,10 @@ textarea {
 
 .col {
   clear: both;
+}
+
+.col-detail {
+  margin: 0 2.5em;
 }
 
 /* Smaller Elements */
@@ -194,7 +199,7 @@ button, .btn {
   margin: 0;
   background: transparent;
   color: #fff;
-  padding: 1.5em 0;
+  padding-bottom: 1.5em;
   border-radius: 0;
   
   &:hover {
@@ -215,6 +220,25 @@ button, .btn {
   border-bottom: solid thick #00838f;
   outline: none;
 }
+
+.breadcrumb {
+  margin-bottom: 1em;
+  a {
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    
+    &:hover {
+      color: #fff;
+    }
+  }
+}
+
+.bc-top {
+  a::after {
+    content: "/";
+  }
+}
+
 
 /* Forms */
 form {
@@ -249,34 +273,34 @@ form {
 
 /* Map View */
 
-.info-window {
-  padding: 0;
-  margin: 0;
-}
+// .info-window {
+//   padding: 0;
+//   margin: 0;
+// }
 
-.info-photo {
-  margin: 0;
-  padding: 0;
-  width: 200px;
-  height: 125px;
-  border-radius: 8px;
-}
+// .info-photo {
+//   margin: 0;
+//   padding: 0;
+//   width: 200px;
+//   height: 125px;
+//   border-radius: 8px;
+// }
 
-.gm-style {
-  padding: 0;
-  width: 200px;
-}
-.gm-style .gm-style-iw {
-  background-color: #fff !important;
-  border: none;
-  top: 0 !important;
-  left: 0 !important;
-  right: 0 !important;
-  height: 100% !important;
-  min-height: 105px !important;
-  padding-top: 5px;
-  display: block !important;
-}  
+// .gm-style {
+//   padding: 0;
+//   width: 200px;
+// }
+// .gm-style .gm-style-iw {
+//   background-color: #fff !important;
+//   border: none;
+//   top: 0 !important;
+//   left: 0 !important;
+//   right: 0 !important;
+//   height: 100% !important;
+//   min-height: 105px !important;
+//   padding-top: 5px;
+//   display: block !important;
+// }  
 
 // /* List View */
 // .row {

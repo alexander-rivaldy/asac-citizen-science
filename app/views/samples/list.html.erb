@@ -15,7 +15,6 @@
                         <div class="tabs-left">
                             <ul class="nav nav-tabs">
                                 <% @locations['data'].each do |sample| %>
-
                                 <li><h1 class="row-h1 <%= 'active' if sample == @locations['data'].last %>" data-toggle="tab" id="row-<%= sample['id'] %>">Sample ID: <%= sample['id'] %></h1></li>
                                 <% end %>
         
