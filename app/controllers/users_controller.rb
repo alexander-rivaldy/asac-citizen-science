@@ -15,6 +15,32 @@ class UsersController < ApplicationController
     
   end
   
+  def edit
+    @params = {"token" => session[:token], "refresh_token" => session[:refresh_token]}
+    @user = RestClient.post ("https://citsciapp.herokuapp.com/profile"),
+        @params.to_json, {content_type: :json, accept: :json}
+    @user = JSON.parse(@user)
+    @update = ""
+    
+  end
+  
+  def update
+    @line1 = params[:line1]
+    @line2 = params[:line2]
+    @postcode = params[:postcode]
+    @state = params[:state]
+    
+    @params = {"token" => session[:token], 
+                "refresh_token" => session[:refresh_token],
+                "line1" => params[:line1],
+                "line2" => params[:line2],
+                "postcode" => params[:postcode],
+                "state" => params[:state] }
+    @register = RestClient.post "https://citsciapp.herokuapp.com/updateAddress",
+            @params.to_json, {content_type: :json, accept: :json}
+    redirect_to profile_path
+  end
+  
   def new
     @register = ""
   end
