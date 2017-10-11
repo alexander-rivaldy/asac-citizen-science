@@ -2,8 +2,6 @@
 
 <div class="center">
     
-    <h3>You have <%= @locations['data'].count %> samples.</h3>
-    
     <div class="wrapper">
         <button class="btn-map <%= 'active' if params[:controller] == 'map' %>" id="change-map">Map View</button>
         <button class="btn-map" id="change-list">List View</button>
@@ -13,6 +11,7 @@
 
     <div class="wrapper">
         <div id="list-view">
+            <h3>You have <%= @locations['data'].count %> samples.</h3>
             <% @locations['data'].each do |sample| %>
             <div class="row" id="row-<%= sample['id'] %>">
                 <h1 class="row-h1"> <%= sample['id'] %></h1>
