@@ -81,8 +81,4 @@
             "edit/samples"+(@sample['id'].to_s) %>
 <% end %>
 
-<%= raw @qr.as_html %>
-<object data="<%= @svg %>" type="image/svg+xml" height="64"
-width="64"/>
-
-<%= session[:admin] %>
+<%= image_tag @png.to_s %>

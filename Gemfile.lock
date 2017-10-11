@@ -220,6 +220,7 @@ DEPENDENCIES
   bcrypt (= 3.1.11)
   bootstrap-sass (= 3.3.7)
   byebug (= 9.0.6)
+  chunky_png
   coffee-rails (= 4.2.2)
   gon
   guard (= 2.13.0)
