@@ -9,9 +9,10 @@
         <div id="list-view">
             <div class="container">
                 
-                <% @pngs.each do |png| %>
+                <% @kits.each do |png| %>
                     <div class="row justify-content-center">
-                        <%= image_tag png.to_data_url %>
+                        <%= image_tag png[0].to_data_url %>
+                        <%= png[1] %>
                     </div>
                 <% end %>
                 

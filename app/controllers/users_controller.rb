@@ -204,6 +204,8 @@ class UsersController < ApplicationController
         @params.to_json, {content_type: :json, accept: :json}
     @users = JSON.parse(@users)
     
+    puts session[:token]
+    
     @request = ""
   end
   
@@ -221,9 +223,10 @@ class UsersController < ApplicationController
     puts session[:refresh_token]
     puts @approve
     
-    @pngs = []
+    @kits = []
     
     @approve['kitcodes'].each do |kitcode|
+      
       @qrcode = RQRCode::QRCode.new(kitcode)
       # With default options specified explicitly
       @png = @qrcode.as_png(
@@ -236,8 +239,10 @@ class UsersController < ApplicationController
                 module_px_size: 6,
                 file: nil # path to write
                 )
-      @pngs.push(@png)
+      @kits.push([@png, kitcode])
+      puts kitcode
     end
+    puts @kits
     
   end
   
