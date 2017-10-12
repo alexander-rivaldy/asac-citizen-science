@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   
   get '/request' => 'users#requests'
   post '/request' => 'users#approverequest'
+  delete '/request' => 'users#deleterequest'
   
   get 'static_pages/home'
 

@@ -245,7 +245,18 @@ class UsersController < ApplicationController
     puts @kits
     
   end
-  
+  def deleterequest
+    puts "test"
+    @params = {"token" => session[:token], 
+              "refresh_token" => session[:refresh_token],
+              "approved" => "false",
+              "request_id" => params[:id]
+    }
+    @delete = RestClient.post ("https://citsciapp.herokuapp.com/requests/update"),
+        @params.to_json, {content_type: :json, accept: :json}
+    @delete = JSON.parse(@delete)
+    redirect_to request_path
+  end
   
   
   private
