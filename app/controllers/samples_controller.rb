@@ -31,6 +31,7 @@ class SamplesController < ApplicationController
         @sample = JSON.parse(@sample)
         @data = @sample['data']
         @chemicals = @sample['data']['chemicals']
+       
         
         @sampleMass = 
             JSON.parse(@data['sampleMass'].tr(':','"').tr('=>','":'))
