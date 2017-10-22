@@ -51,6 +51,8 @@
                             <th>Cycle Number:</th>
                             <td><%= @data['cycleNumber'] %></td>
                         </tr>
+                        <% if @data['ph'].present? %>
+                        
                         <tr>
                             <th>pH:</th>
                             <td><%= @data['ph'] %></td>
@@ -75,6 +77,8 @@
                             <th>Total Alkalinity CaCO3:</th>
                             <td><%= @totalAlkalinityCaCO3['value'] + " " + @totalAlkalinityCaCO3['units'] %></td>
                         </tr>
+                        
+                        <% end %>
                     </table>
                 </div>
                 <div class="col col-detail">
@@ -94,7 +98,9 @@
                 </div>
             </div>
         </div> 
+        <% if @png..present? %>
         <%= image_tag @png.to_data_url %>
+        <% end %>
     </div>
     
    
