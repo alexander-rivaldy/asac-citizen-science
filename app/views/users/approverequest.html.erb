@@ -2,21 +2,23 @@
 
 <% provide(:title, "My Samples") %>
 
-<div class="center">
+<div class="center jumbotron">
     
-    <h1>QR Codes for sampling kits</h1>
-    <div class="wrapper">
-        <div id="list-view">
-            <div class="container">
-                
-                <% @kits.each do |png| %>
-                    <div class="row justify-content-center">
-                        <%= image_tag png[0].to_data_url %>
-                        <%= png[1] %>
-                    </div>
-                <% end %>
-                
+    <h1>QR Codes for Sampling Kits</h1>
+    <div id="container">
+        <% @kits.each do |png| %>
+        <div class="wrapper wpr-codes">
+            <div class="wrapper">
+                <%= image_tag png[0].to_data_url %>
+            </div>
+            <div class="wrapper">
+                <%= png[1] %>
             </div>
         </div>
+        
+        <% end %>
     </div>
+    <!--<div class="wrapper">-->
+        
+    <!--</div>-->
 </div>

@@ -91,10 +91,14 @@
                             <% end %>
                         <% end %>
                     </table> 
+                    <div style="margin: 2em 0;">
+                        <%= image_tag @png.to_data_url %>
+                    </div>
+                    
                 </div>
             </div>
         </div> 
-        <%= image_tag @png.to_data_url %>
+        
     </div>
     
    

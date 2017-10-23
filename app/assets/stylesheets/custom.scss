@@ -130,6 +130,20 @@ textarea {
   }
 }
 
+.wpr-codes {
+  float: center;
+  clear: both;
+  margin: 1em 0;
+  background-color: #033e46;
+  padding: 2em 0;
+  margin: 13px;
+  
+  img {
+    width: 250px !important;
+  }
+
+}
+
 .col {
   clear: both;
 }
@@ -199,6 +213,27 @@ button, .btn {
   
   &:hover {
     color: #094d4d;
+    background: #fff;
+    text-decoration: none;
+    border-color: transparent;
+  }
+}
+
+.btn-danger {
+  background: #D84315;
+  margin: 0 1em;
+  min-width: 125px;
+  border-radius: 5px;
+  padding: 1em;
+  color: #fff;
+  font-weight: bold;
+  font-size: 14px;
+  text-decoration: none;
+  border-color: transparent;
+  border-style: none;
+  
+  &:hover {
+    color: #D84315;
     background: #fff;
     text-decoration: none;
     border-color: transparent;

@@ -15,6 +15,7 @@
                         <th>Address</th>
                         <th>Quantity</th>
                         <th>Status</th>
+                        <th>Action</th>
                     </thead>
                     <tbody>
                         <% @users['data'].each do |user| %>
@@ -31,25 +32,26 @@
                             <td><%= user['quantity'] %></td>
                             <td>
                                 <% if !user['approved'] %>
-                                    <%= form_for(@request, url: request_path) do |f| %>
-                                        <%= f.hidden_field :request_id, 
-                                            :value => user['request_id'] %>
-                                        <%= f.submit "Approve now", 
-                                            class: "btn btn-primary" %>
-                                    <% end %>
+                                Unapproved
                                 <% elsif %>
                                  Approved
                                  <% end %>
                             </td>
-                            <% if user['approved'] %>
                             
                             <td>
-                                <%= link_to "<button class='btn btn-primary'>Cancel</button>".html_safe, 
-                                    request_path(:id => user['request_id']),
-                                    method: :delete %>
+                                <% if user['approved'] %>
+                                    <%= link_to "<button class='btn btn-danger'>Cancel</button>".html_safe, 
+                                        request_path(:id => user['request_id']),
+                                        method: :delete %>
+                                <% elsif %>
+                                    <%= form_for(@request, url: request_path) do |f| %>
+                                            <%= f.hidden_field :request_id, 
+                                                :value => user['request_id'] %>
+                                            <%= f.submit "Approve now", 
+                                                class: "btn btn-primary" %>
+                                        <% end %>
+                                <% end %>
                             </td>
-                            
-                            <% end %>
                         
                         </tr>
                         <% end %>
