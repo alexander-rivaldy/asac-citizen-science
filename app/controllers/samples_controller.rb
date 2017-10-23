@@ -26,11 +26,12 @@ class SamplesController < ApplicationController
         end
         
         @params = {"token" => session[:token], "refresh_token" => session[:refresh_token]}
-        @sample = RestClient.post ("https://citsciapp.herokuapp.com/sample/" + params['id'].to_s),
+        @sample = RestClient.post ("https://citsciapp.herokuapp.com/samples/" + params['id'].to_s),
             @params.to_json, {content_type: :json, accept: :json}
         @sample = JSON.parse(@sample)
         @data = @sample['data']
         @chemicals = @sample['data']['chemicals']
+       
        
         
         @sampleMass = 
@@ -44,9 +45,10 @@ class SamplesController < ApplicationController
         @totalAlkalinityCaCO3 = 
             JSON.parse(@data['totalAlkalinityCaCO3'].tr(':','"').tr('=>','":'))
         
+        puts @data['kitcode']
         
         
-        @qrcode = RQRCode::QRCode.new(request.original_url)
+        @qrcode = RQRCode::QRCode.new(@data['kitcode'])
         # With default options specified explicitly
         @png = @qrcode.as_png(
                   resize_gte_to: false,
