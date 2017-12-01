@@ -27,10 +27,33 @@
                             <th>Last Updated:</th>
                             <td><%= @data['updated'] %></td>
                         </tr>
-                        <tr>
-                            <th>Weather:</th>
-                            <td><%= @data['weather'] %></td>
-                        </tr>
+                        <% if @data['weather']['desc'].present? %>
+                            <tr>
+                                <th>Weather:</th>
+                                <td><%= @data['weather']['desc'] %></td>
+                            </tr>
+                            <tr>
+                                <th>Temperature:</th>
+                                <td><%= @data['weather']['temperature'] %></td>
+                            </tr>
+                            <tr>
+                                <th>Cloud Coverage:</th>
+                                <td><%= @data['weather']['cloudCover'] %></td>
+                            </tr>
+                            <tr>
+                                <th>Wind Speed:</th>
+                                <td><%= @data['weather']['windSpeed'] %></td>
+                            </tr>
+                            <tr>
+                                <th>Wind Direction:</th>
+                                <td><%= @data['weather']['windDirection'] %></td>
+                            </tr>
+                        <% else %>
+                            <tr>
+                                <th>Weather:</th>
+                                <td><%= @data['weather'] %></td>
+                            </tr>
+                        <% end %>
                         <tr>
                             <th>Latitude:</th>
                             <td><%= @data['lat'] %></td>
@@ -93,21 +116,20 @@
                             </tr>
                             
                             <% end %>
+                        <% else %>
+                            <h3>Sample not yet analyzed</h3>
                         <% end %>
                     </table> 
+                    <% if @png..present? %>
                     <div style="margin: 2em 0;">
                         <%= image_tag @png.to_data_url %>
                     </div>
+                    <% end %>
                     
                 </div>
             </div>
         </div> 
-        <% if @png..present? %>
-        <%= image_tag @png.to_data_url %>
-        <% end %>
     </div>
-    
-   
     <% if @admin %>
         <%= link_to '<button type="button">EDIT</button>'.html_safe, 
                 "edit/samples"+(@sample['id'].to_s) %>

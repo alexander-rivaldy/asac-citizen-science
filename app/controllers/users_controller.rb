@@ -136,17 +136,24 @@ class UsersController < ApplicationController
   end
   
   def create
+    @register
     @password = params[:password]
-    @passwordconf = params[:confirm_password]
+    @passwordconf = params[:password_confirmation]
     
     if(@password.eql? @passwordconf)
-      @params ={ "email" => params[:email].downcase, "password" => @password,
-                "name" => params[:name], "line1" => params[:address_line_1],
-                "line2" => params[:address_line_2] ,
-                "postcode" => params[:postcode], "state" => params[:state]}
-      @register = RestClient.post "https://citsciapp.herokuapp.com/register",
+      @params ={ "email" => params[:email], 
+                 "password" => @password,
+                "name" => params[:name], 
+                "streetAddress" => params[:street_address],
+                "city" => params[:city] ,
+                "postcode" => params[:postcode], 
+                "state" => params[:state] }
+      puts @params
+      @register = RestClient.post ("https://citsciapp.herokuapp.com/register"),
               @params.to_json, {content_type: :json, accept: :json}
       @json = JSON.parse(@register)
+      
+      puts @json
       
       if(@json["status"].eql? "SUCCESS")
         flash[:success] = "Registered successfully!"

@@ -11,7 +11,7 @@
                         <h3>Administrator</h3>
                     <% end %>
                     <p><b>Email:</b> <%= @user['email'] %><br/>
-                    <b>Address:</b> <%= @user['address']['line1'] %>, <%= @user['address']['line2'] %>.
+                    <b>Address:</b> <%= @user['address']['streetAddress'] %>, <%= @user['address']['city'] %>.
                             <%= @user['address']['state'] %>, <%= @user['address']['postcode'] %></p>
                     <% if !is_admin? %>
                         <p>Number of samples taken: <%= @numsamples %></p>

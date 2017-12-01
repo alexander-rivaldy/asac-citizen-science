@@ -9,12 +9,19 @@
     
     <div class="wrapper">
         <div id="grid-view">
+            <h3>You have <%=@locations['data'].count %> number of samples.</h3>
             <% @locations['data'].each do |sample| %>
                 <div class="grid">
                     <img src= "<%= sample['photo'] %>"/>
                     <h3>Sample ID: <%= sample['id'] %></h3>
                     <p><b>Date/Time:</b> <%= sample['datetime'] %> <br/>
-                    <b>Weather:</b> <%= sample['weather'] %><br/>
+                    <b>Weather:</b> 
+                    <% if sample['weather']['desc'].present? %>
+                        <%= sample['weather']['desc'] %><br/>
+                    <% else %>
+                        <%= sample['weather'] %><br/>
+                    <% end %>
+                    
                     <b>Latitude:</b> <%= sample['lat'] %><br/>
                     <b>Longitude:</b> <%= sample['lng'] %></p>
                     <%= link_to "Read more > ", samples_path(sample['id']), class: 'read-more' %>

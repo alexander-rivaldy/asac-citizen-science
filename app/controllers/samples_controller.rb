@@ -31,19 +31,20 @@ class SamplesController < ApplicationController
         @sample = JSON.parse(@sample)
         @data = @sample['data']
         @chemicals = @sample['data']['chemicals']
-       
-       
         
-        @sampleMass = 
-            JSON.parse(@data['sampleMass'].tr(':','"').tr('=>','":'))
-        @conductivityAt25C = 
-            JSON.parse(@data['conductivityAt25C'].tr(':','"').tr('=>','":'))
-        @bicarbonateAlkalinityHCO3 = 
-            JSON.parse(@data['bicarbonateAlkalinityHCO3'].tr(':','"').tr('=>','":'))
-        @carbonateAlkalinityCO3 = 
-            JSON.parse(@data['carbonateAlkalinityCO3'].tr(':','"').tr('=>','":'))
-        @totalAlkalinityCaCO3 = 
-            JSON.parse(@data['totalAlkalinityCaCO3'].tr(':','"').tr('=>','":'))
+        puts
+        puts
+        puts @sample
+        puts
+        puts
+       
+       
+        puts @data
+        @sampleMass = @data['sampleMass']
+        @conductivityAt25C = @data['conductivityAt25C']
+        @bicarbonateAlkalinityHCO3 = @data['bicarbonateAlkalinityHCO3']
+        @carbonateAlkalinityCO3 = @data['carbonateAlkalinityCO3']
+        @totalAlkalinityCaCO3 = @data['totalAlkalinityCaCO3']
         
         puts @data['kitcode']
         
