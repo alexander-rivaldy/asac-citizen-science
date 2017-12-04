@@ -206,6 +206,8 @@ class UsersController < ApplicationController
       redirect_to profile_path
       return
     end
+    puts session[:token]
+    puts session[:refresh_token]
     @params = {"token" => session[:token], "refresh_token" => session[:refresh_token]}
     @users = RestClient.post ("https://citsciapp.herokuapp.com/requests/all"),
         @params.to_json, {content_type: :json, accept: :json}

@@ -24,8 +24,8 @@
                             <td><%= mail_to user['email'] %></td>
                             
                             <td>
-                                <%= user['address']['line1'] + ", " +
-                                    user['address']['line2'] + ". " +
+                                <%= user['address']['streetAddress'] + ", " +
+                                    user['address']['city'] + ". " +
                                     user['address']['postcode'] + ", " +
                                     user['address']['state'] + "." %>
                             </td>
